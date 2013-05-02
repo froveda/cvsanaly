@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Tag:</b>
+  <%= @tag_revision.tag_id %>
+</p>
+
+<p>
+  <b>Commit:</b>
+  <%= @tag_revision.commit_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_tag_revision_path(@tag_revision) %> |
+<%= link_to 'Back', tag_revisions_path %>

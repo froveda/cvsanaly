@@ -1,0 +1,57 @@
+<h1>Listing metrics</h1>
+
+<table>
+  <tr>
+    <th>File</th>
+    <th>Commit</th>
+    <th>Lang</th>
+    <th>Sloc</th>
+    <th>Loc</th>
+    <th>Ncomment</th>
+    <th>Lcomment</th>
+    <th>Lblank</th>
+    <th>Nfunctions</th>
+    <th>Mccabe max</th>
+    <th>Mccabe min</th>
+    <th>Mccabe sum</th>
+    <th>Mccabe mean</th>
+    <th>Mccabe median</th>
+    <th>Halstead length</th>
+    <th>Halstead vol</th>
+    <th>Halstead level</th>
+    <th>Halstead md</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @metrics.each do |metric| %>
+  <tr>
+    <td><%= metric.file_id %></td>
+    <td><%= metric.commit_id %></td>
+    <td><%= metric.lang %></td>
+    <td><%= metric.sloc %></td>
+    <td><%= metric.loc %></td>
+    <td><%= metric.ncomment %></td>
+    <td><%= metric.lcomment %></td>
+    <td><%= metric.lblank %></td>
+    <td><%= metric.nfunctions %></td>
+    <td><%= metric.mccabe_max %></td>
+    <td><%= metric.mccabe_min %></td>
+    <td><%= metric.mccabe_sum %></td>
+    <td><%= metric.mccabe_mean %></td>
+    <td><%= metric.mccabe_median %></td>
+    <td><%= metric.halstead_length %></td>
+    <td><%= metric.halstead_vol %></td>
+    <td><%= metric.halstead_level %></td>
+    <td><%= metric.halstead_md %></td>
+    <td><%= link_to 'Show', metric %></td>
+    <td><%= link_to 'Edit', edit_metric_path(metric) %></td>
+    <td><%= link_to 'Destroy', metric, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Metric', new_metric_path %>

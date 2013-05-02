@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Rev:</b>
+  <%= @scmlog.rev %>
+</p>
+
+<p>
+  <b>Committer:</b>
+  <%= @scmlog.committer_id %>
+</p>
+
+<p>
+  <b>Author:</b>
+  <%= @scmlog.author_id %>
+</p>
+
+<p>
+  <b>Date:</b>
+  <%= @scmlog.date %>
+</p>
+
+<p>
+  <b>Message:</b>
+  <%= @scmlog.message %>
+</p>
+
+<p>
+  <b>Composed rev:</b>
+  <%= @scmlog.composed_rev %>
+</p>
+
+<p>
+  <b>Repository:</b>
+  <%= @scmlog.repository_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_scmlog_path(@scmlog) %> |
+<%= link_to 'Back', scmlogs_path %>

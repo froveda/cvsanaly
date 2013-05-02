@@ -1,0 +1,2 @@
+module ScmlogsHelper
+end

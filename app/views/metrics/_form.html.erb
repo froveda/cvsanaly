@@ -1,0 +1,89 @@
+<%= form_for(@metric) do |f| %>
+  <% if @metric.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@metric.errors.count, "error") %> prohibited this metric from being saved:</h2>
+
+      <ul>
+      <% @metric.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :file_id %><br />
+    <%= f.number_field :file_id %>
+  </div>
+  <div class="field">
+    <%= f.label :commit_id %><br />
+    <%= f.number_field :commit_id %>
+  </div>
+  <div class="field">
+    <%= f.label :lang %><br />
+    <%= f.text_area :lang %>
+  </div>
+  <div class="field">
+    <%= f.label :sloc %><br />
+    <%= f.number_field :sloc %>
+  </div>
+  <div class="field">
+    <%= f.label :loc %><br />
+    <%= f.number_field :loc %>
+  </div>
+  <div class="field">
+    <%= f.label :ncomment %><br />
+    <%= f.number_field :ncomment %>
+  </div>
+  <div class="field">
+    <%= f.label :lcomment %><br />
+    <%= f.number_field :lcomment %>
+  </div>
+  <div class="field">
+    <%= f.label :lblank %><br />
+    <%= f.number_field :lblank %>
+  </div>
+  <div class="field">
+    <%= f.label :nfunctions %><br />
+    <%= f.number_field :nfunctions %>
+  </div>
+  <div class="field">
+    <%= f.label :mccabe_max %><br />
+    <%= f.number_field :mccabe_max %>
+  </div>
+  <div class="field">
+    <%= f.label :mccabe_min %><br />
+    <%= f.number_field :mccabe_min %>
+  </div>
+  <div class="field">
+    <%= f.label :mccabe_sum %><br />
+    <%= f.number_field :mccabe_sum %>
+  </div>
+  <div class="field">
+    <%= f.label :mccabe_mean %><br />
+    <%= f.number_field :mccabe_mean %>
+  </div>
+  <div class="field">
+    <%= f.label :mccabe_median %><br />
+    <%= f.number_field :mccabe_median %>
+  </div>
+  <div class="field">
+    <%= f.label :halstead_length %><br />
+    <%= f.number_field :halstead_length %>
+  </div>
+  <div class="field">
+    <%= f.label :halstead_vol %><br />
+    <%= f.number_field :halstead_vol %>
+  </div>
+  <div class="field">
+    <%= f.label :halstead_level %><br />
+    <%= f.text_field :halstead_level %>
+  </div>
+  <div class="field">
+    <%= f.label :halstead_md %><br />
+    <%= f.number_field :halstead_md %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

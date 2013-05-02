@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>To:</b>
+  <%= @file_copy.to_id %>
+</p>
+
+<p>
+  <b>From:</b>
+  <%= @file_copy.from_id %>
+</p>
+
+<p>
+  <b>From commit:</b>
+  <%= @file_copy.from_commit_id %>
+</p>
+
+<p>
+  <b>New file name:</b>
+  <%= @file_copy.new_file_name %>
+</p>
+
+<p>
+  <b>Action:</b>
+  <%= @file_copy.action_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_file_copy_path(@file_copy) %> |
+<%= link_to 'Back', file_copies_path %>

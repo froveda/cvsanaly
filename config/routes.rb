@@ -1,4 +1,40 @@
 Netiner::Application.routes.draw do
+  resources :tags
+
+
+  resources :tag_revisions
+
+
+  resources :scmlogs
+
+
+  resources :repositories
+
+
+  resources :people
+
+
+  resources :metrics
+
+
+  resources :file_links
+
+
+  resources :file_copies
+
+
+  resources :branches
+
+
+  resources :actions_file_names
+
+
+  resources :actions
+
+
+  resources :action_files
+
+
   resources :file_types
 
 

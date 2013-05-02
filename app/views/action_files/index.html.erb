@@ -1,0 +1,29 @@
+<h1>Listing action_files</h1>
+
+<table>
+  <tr>
+    <th>File</th>
+    <th>Action</th>
+    <th>Action type</th>
+    <th>Commit</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @action_files.each do |action_file| %>
+  <tr>
+    <td><%= action_file.file_id %></td>
+    <td><%= action_file.action_id %></td>
+    <td><%= action_file.action_type %></td>
+    <td><%= action_file.commit_id %></td>
+    <td><%= link_to 'Show', action_file %></td>
+    <td><%= link_to 'Edit', edit_action_file_path(action_file) %></td>
+    <td><%= link_to 'Destroy', action_file, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Action file', new_action_file_path %>

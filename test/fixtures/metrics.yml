@@ -1,0 +1,41 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  file_id: 1
+  commit_id: 1
+  lang: MyText
+  sloc: 1
+  loc: 1
+  ncomment: 1
+  lcomment: 1
+  lblank: 1
+  nfunctions: 1
+  mccabe_max: 1
+  mccabe_min: 1
+  mccabe_sum: 1
+  mccabe_mean: 1
+  mccabe_median: 1
+  halstead_length: 1
+  halstead_vol: 1
+  halstead_level: 1.5
+  halstead_md: 1
+
+two:
+  file_id: 1
+  commit_id: 1
+  lang: MyText
+  sloc: 1
+  loc: 1
+  ncomment: 1
+  lcomment: 1
+  lblank: 1
+  nfunctions: 1
+  mccabe_max: 1
+  mccabe_min: 1
+  mccabe_sum: 1
+  mccabe_mean: 1
+  mccabe_median: 1
+  halstead_length: 1
+  halstead_vol: 1
+  halstead_level: 1.5
+  halstead_md: 1

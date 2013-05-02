@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  parent_id: 1
+  file_id: 1
+  commit_id: 1
+  file_path: MyString
+
+two:
+  parent_id: 1
+  file_id: 1
+  commit_id: 1
+  file_path: MyString
