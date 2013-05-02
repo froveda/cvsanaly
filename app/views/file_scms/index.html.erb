@@ -1,0 +1,25 @@
+<h1>Listing file_scms</h1>
+
+<table>
+  <tr>
+    <th>File name</th>
+    <th>Repository</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @file_scms.each do |file_scm| %>
+  <tr>
+    <td><%= file_scm.file_name %></td>
+    <td><%= file_scm.repository_id %></td>
+    <td><%= link_to 'Show', file_scm %></td>
+    <td><%= link_to 'Edit', edit_file_scm_path(file_scm) %></td>
+    <td><%= link_to 'Destroy', file_scm, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New File scm', new_file_scm_path %>

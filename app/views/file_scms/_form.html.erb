@@ -1,0 +1,25 @@
+<%= form_for(@file_scm) do |f| %>
+  <% if @file_scm.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@file_scm.errors.count, "error") %> prohibited this file_scm from being saved:</h2>
+
+      <ul>
+      <% @file_scm.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :file_name %><br />
+    <%= f.text_field :file_name %>
+  </div>
+  <div class="field">
+    <%= f.label :repository_id %><br />
+    <%= f.number_field :repository_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
