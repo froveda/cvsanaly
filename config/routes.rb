@@ -1,4 +1,4 @@
-Netiner::Application.routes.draw do
+Cvsanaly::Application.routes.draw do
   resources :tags
 
 
