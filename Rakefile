@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Netiner::Application.load_tasks
+Cvsanaly::Application.load_tasks
