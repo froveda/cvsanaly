@@ -1,2 +1,2 @@
-module ScmlogsHelper
+module CommitsHelper
 end

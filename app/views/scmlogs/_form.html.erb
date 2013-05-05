@@ -1,10 +1,10 @@
-<%= form_for(@scmlog) do |f| %>
-  <% if @scmlog.errors.any? %>
+<%= form_for(@commit) do |f| %>
+  <% if @commit.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@scmlog.errors.count, "error") %> prohibited this scmlog from being saved:</h2>
+      <h2><%= pluralize(@commit.errors.count, "error") %> prohibited this commit from being saved:</h2>
 
       <ul>
-      <% @scmlog.errors.full_messages.each do |msg| %>
+      <% @commit.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>

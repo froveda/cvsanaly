@@ -1,11 +1,13 @@
 Cvsanaly::Application.routes.draw do
+  mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
+
   resources :tags
 
 
   resources :tag_revisions
 
 
-  resources :scmlogs
+  resources :commits
 
 
   resources :repositories
@@ -43,7 +45,7 @@ Cvsanaly::Application.routes.draw do
 
   devise_for :users
 
-  mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
+  
 
   root :to => "application#index"
   # The priority is based upon order of creation:

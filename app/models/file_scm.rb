@@ -3,4 +3,5 @@ class FileScm < ActiveRecord::Base
   attr_accessible :file_name, :repository_id
 
   has_many :file_links
+  has_many :actions, :class_name => "Action", :foreign_key => :file_id
 end

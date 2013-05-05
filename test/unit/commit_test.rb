@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ScmlogTest < ActiveSupport::TestCase
+class CommitTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

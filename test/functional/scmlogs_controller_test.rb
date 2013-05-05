@@ -1,14 +1,14 @@
 require 'test_helper'
 
-class ScmlogsControllerTest < ActionController::TestCase
+class CommitsControllerTest < ActionController::TestCase
   setup do
-    @scmlog = scmlogs(:one)
+    @commit = commits(:one)
   end
 
   test "should get index" do
     get :index
     assert_response :success
-    assert_not_nil assigns(:scmlogs)
+    assert_not_nil assigns(:commits)
   end
 
   test "should get new" do
@@ -16,34 +16,34 @@ class ScmlogsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should create scmlog" do
-    assert_difference('Scmlog.count') do
-      post :create, scmlog: { author_id: @scmlog.author_id, committer_id: @scmlog.committer_id, composed_rev: @scmlog.composed_rev, date: @scmlog.date, message: @scmlog.message, repository_id: @scmlog.repository_id, rev: @scmlog.rev }
+  test "should create commit" do
+    assert_difference('Commit.count') do
+      post :create, commit: { author_id: @commit.author_id, committer_id: @commit.committer_id, composed_rev: @commit.composed_rev, date: @commit.date, message: @commit.message, repository_id: @commit.repository_id, rev: @commit.rev }
     end
 
-    assert_redirected_to scmlog_path(assigns(:scmlog))
+    assert_redirected_to commit_path(assigns(:commit))
   end
 
-  test "should show scmlog" do
-    get :show, id: @scmlog
+  test "should show commit" do
+    get :show, id: @commit
     assert_response :success
   end
 
   test "should get edit" do
-    get :edit, id: @scmlog
+    get :edit, id: @commit
     assert_response :success
   end
 
-  test "should update scmlog" do
-    put :update, id: @scmlog, scmlog: { author_id: @scmlog.author_id, committer_id: @scmlog.committer_id, composed_rev: @scmlog.composed_rev, date: @scmlog.date, message: @scmlog.message, repository_id: @scmlog.repository_id, rev: @scmlog.rev }
-    assert_redirected_to scmlog_path(assigns(:scmlog))
+  test "should update commit" do
+    put :update, id: @commit, commit: { author_id: @commit.author_id, committer_id: @commit.committer_id, composed_rev: @commit.composed_rev, date: @commit.date, message: @commit.message, repository_id: @commit.repository_id, rev: @commit.rev }
+    assert_redirected_to commit_path(assigns(:commit))
   end
 
-  test "should destroy scmlog" do
-    assert_difference('Scmlog.count', -1) do
-      delete :destroy, id: @scmlog
+  test "should destroy commit" do
+    assert_difference('Commit.count', -1) do
+      delete :destroy, id: @commit
     end
 
-    assert_redirected_to scmlogs_path
+    assert_redirected_to commits_path
   end
 end

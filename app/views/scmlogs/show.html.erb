@@ -2,39 +2,39 @@
 
 <p>
   <b>Rev:</b>
-  <%= @scmlog.rev %>
+  <%= @commit.rev %>
 </p>
 
 <p>
   <b>Committer:</b>
-  <%= @scmlog.committer_id %>
+  <%= @commit.committer_id %>
 </p>
 
 <p>
   <b>Author:</b>
-  <%= @scmlog.author_id %>
+  <%= @commit.author_id %>
 </p>
 
 <p>
   <b>Date:</b>
-  <%= @scmlog.date %>
+  <%= @commit.date %>
 </p>
 
 <p>
   <b>Message:</b>
-  <%= @scmlog.message %>
+  <%= @commit.message %>
 </p>
 
 <p>
   <b>Composed rev:</b>
-  <%= @scmlog.composed_rev %>
+  <%= @commit.composed_rev %>
 </p>
 
 <p>
   <b>Repository:</b>
-  <%= @scmlog.repository_id %>
+  <%= @commit.repository_id %>
 </p>
 
 
-<%= link_to 'Edit', edit_scmlog_path(@scmlog) %> |
-<%= link_to 'Back', scmlogs_path %>
+<%= link_to 'Edit', edit_commit_path(@commit) %> |
+<%= link_to 'Back', commits_path %>

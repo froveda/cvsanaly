@@ -1,82 +1,82 @@
-class ScmlogsController < ApplicationController
-  # GET /scmlogs
-  # GET /scmlogs.json
+class CommitsController < ApplicationController
+  # GET /commits
+  # GET /commits.json
   def index
-    @scmlogs = Scmlog.all
+    @commits = Commit.all
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @scmlogs }
+      format.json { render json: @commits }
     end
   end
 
-  # GET /scmlogs/1
-  # GET /scmlogs/1.json
+  # GET /commits/1
+  # GET /commits/1.json
   def show
-    @scmlog = Scmlog.find(params[:id])
+    @commit = Commit.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @scmlog }
+      format.json { render json: @commit }
     end
   end
 
-  # GET /scmlogs/new
-  # GET /scmlogs/new.json
+  # GET /commits/new
+  # GET /commits/new.json
   def new
-    @scmlog = Scmlog.new
+    @commit = Commit.new
 
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: @scmlog }
+      format.json { render json: @commit }
     end
   end
 
-  # GET /scmlogs/1/edit
+  # GET /commits/1/edit
   def edit
-    @scmlog = Scmlog.find(params[:id])
+    @commit = Commit.find(params[:id])
   end
 
-  # POST /scmlogs
-  # POST /scmlogs.json
+  # POST /commits
+  # POST /commits.json
   def create
-    @scmlog = Scmlog.new(params[:scmlog])
+    @commit = Commit.new(params[:commit])
 
     respond_to do |format|
-      if @scmlog.save
-        format.html { redirect_to @scmlog, notice: 'Scmlog was successfully created.' }
-        format.json { render json: @scmlog, status: :created, location: @scmlog }
+      if @commit.save
+        format.html { redirect_to @commit, notice: 'Commit was successfully created.' }
+        format.json { render json: @commit, status: :created, location: @commit }
       else
         format.html { render action: "new" }
-        format.json { render json: @scmlog.errors, status: :unprocessable_entity }
+        format.json { render json: @commit.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # PUT /scmlogs/1
-  # PUT /scmlogs/1.json
+  # PUT /commits/1
+  # PUT /commits/1.json
   def update
-    @scmlog = Scmlog.find(params[:id])
+    @commit = Commit.find(params[:id])
 
     respond_to do |format|
-      if @scmlog.update_attributes(params[:scmlog])
-        format.html { redirect_to @scmlog, notice: 'Scmlog was successfully updated.' }
+      if @commit.update_attributes(params[:commit])
+        format.html { redirect_to @commit, notice: 'Commit was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
-        format.json { render json: @scmlog.errors, status: :unprocessable_entity }
+        format.json { render json: @commit.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # DELETE /scmlogs/1
-  # DELETE /scmlogs/1.json
+  # DELETE /commits/1
+  # DELETE /commits/1.json
   def destroy
-    @scmlog = Scmlog.find(params[:id])
-    @scmlog.destroy
+    @commit = Commit.find(params[:id])
+    @commit.destroy
 
     respond_to do |format|
-      format.html { redirect_to scmlogs_url }
+      format.html { redirect_to commits_url }
       format.json { head :no_content }
     end
   end
