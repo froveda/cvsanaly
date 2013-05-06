@@ -4,5 +4,5 @@ class FileLink < ActiveRecord::Base
   belongs_to :file_scm, :foreign_key => :file_id
   belongs_to :commit, :foreign_key => :commit_id
 
-  has_one :parent, :class_name => "FileLink", :foreign_key => "parent_id"
+  belongs_to :parent, :class_name => "FileScm", :foreign_key => "parent_id"
 end

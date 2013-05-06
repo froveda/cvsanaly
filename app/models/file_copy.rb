@@ -3,4 +3,6 @@ class FileCopy < ActiveRecord::Base
 
   belongs_to :action
   belongs_to :commit, :class_name => "Commit", :foreign_key => :from_commit_id
+  belongs_to :from, :class_name => "FileScm", :foreign_key => :from_id
+  belongs_to :to, :class_name => "FileScm", :foreign_key => :to_id
 end
