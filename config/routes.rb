@@ -45,9 +45,9 @@ Cvsanaly::Application.routes.draw do
 
   devise_for :users
 
-  
+  match "files_history" => "welcome#files_history"
 
-  root :to => "application#index"
+  root :to => "welcome#home"
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

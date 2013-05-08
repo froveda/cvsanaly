@@ -7,5 +7,4 @@ class Action < ActiveRecord::Base
   belongs_to :branch
 
   has_many :file_copies
-  has_many :metrics
 end
