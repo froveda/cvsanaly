@@ -10,6 +10,7 @@ gem 'rails_admin'
 gem 'execjs'
 gem 'therubyracer'
 gem 'devise'
+gem 'activerecord-mysql-adapter'
 
 # Gems used only for assets and not required
 # in production environments by default.
