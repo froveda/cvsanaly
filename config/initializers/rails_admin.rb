@@ -28,6 +28,7 @@ RailsAdmin.config do |config|
 
   # Exclude specific models (keep the others):
   # config.excluded_models = []
+  config.excluded_models = ["ActionFile","ActionsFileName"]
 
   # Include specific models (exclude the others):
   # config.included_models = []
@@ -51,5 +52,13 @@ RailsAdmin.config do |config|
   # Now you probably need to tour the wiki a bit: https://github.com/sferik/rails_admin/wiki
   # Anyway, here is how RailsAdmin saw your application's models when you ran the initializer:
 
-
+  config.actions do
+    # root actions
+    dashboard                     # mandatory
+                                  # collection actions
+    index                         # mandatory
+    export
+                                  # member actions
+    show
+  end
 end
