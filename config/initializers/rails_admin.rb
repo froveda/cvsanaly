@@ -61,4 +61,11 @@ RailsAdmin.config do |config|
                                   # member actions
     show
   end
+
+  # A Add
+  # M Modified
+  # D Deleted
+  # V moVed (Renamed)
+  # C Copied
+  # R Replaced
 end

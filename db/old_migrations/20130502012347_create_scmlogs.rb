@@ -1,6 +1,6 @@
 class CreateScmlogs < ActiveRecord::Migration
   def change
-    create_table :scmlogs do |t|
+    create_table :scmlog do |t|
       t.text :rev
       t.integer :committer_id
       t.integer :author_id

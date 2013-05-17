@@ -1,0 +1,27 @@
+<h1>Listing commits_lines</h1>
+
+<table>
+  <tr>
+    <th>Commit</th>
+    <th>Added</th>
+    <th>Removed</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @commits_lines.each do |commits_line| %>
+  <tr>
+    <td><%= commits_line.commit_id %></td>
+    <td><%= commits_line.added %></td>
+    <td><%= commits_line.removed %></td>
+    <td><%= link_to 'Show', commits_line %></td>
+    <td><%= link_to 'Edit', edit_commits_line_path(commits_line) %></td>
+    <td><%= link_to 'Destroy', commits_line, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Commits line', new_commits_line_path %>

@@ -1,4 +1,7 @@
 Cvsanaly::Application.routes.draw do
+  resources :commits_lines
+
+
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
   resources :tags

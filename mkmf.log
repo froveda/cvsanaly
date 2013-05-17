@@ -1,0 +1,163 @@
+have_library: checking for tgetnum() in -lncurses... -------------------- yes
+
+"gcc -o conftest -I/home/fabri/.rvm/rubies/ruby-1.9.3-p327/include/ruby-1.9.1/i686-linux -I/home/fabri/.rvm/rubies/ruby-1.9.3-p327/include/ruby-1.9.1/ruby/backward -I/home/fabri/.rvm/rubies/ruby-1.9.3-p327/include/ruby-1.9.1 -I/home/fabri/.rvm/src/ruby-1.9.3-p327/ext/readline  -D_FILE_OFFSET_BITS=64  -I/home/fabri/.rvm/usr/include  -O3 -ggdb -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration  -fPIC conftest.c  -L. -L/home/fabri/.rvm/rubies/ruby-1.9.3-p327/lib -Wl,-R/home/fabri/.rvm/rubies/ruby-1.9.3-p327/lib -L/home/fabri/.rvm/usr/lib -Wl,-R/home/fabri/.rvm/usr/lib -L.  -rdynamic -Wl,-export-dynamic -L/home/fabri/.rvm/usr/lib  -Wl,-R/home/fabri/.rvm/usr/lib      -Wl,-R -Wl,/home/fabri/.rvm/rubies/ruby-1.9.3-p327/lib -L/home/fabri/.rvm/rubies/ruby-1.9.3-p327/lib -lruby  -lpthread -lrt -ldl -lcrypt -lm   -lc"
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: int main() {return 0;}
+/* end */
+
+"gcc -o conftest -I/home/fabri/.rvm/rubies/ruby-1.9.3-p327/include/ruby-1.9.1/i686-linux -I/home/fabri/.rvm/rubies/ruby-1.9.3-p327/include/ruby-1.9.1/ruby/backward -I/home/fabri/.rvm/rubies/ruby-1.9.3-p327/include/ruby-1.9.1 -I/home/fabri/.rvm/src/ruby-1.9.3-p327/ext/readline  -D_FILE_OFFSET_BITS=64  -I/home/fabri/.rvm/usr/include  -O3 -ggdb -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration  -fPIC conftest.c  -L. -L/home/fabri/.rvm/rubies/ruby-1.9.3-p327/lib -Wl,-R/home/fabri/.rvm/rubies/ruby-1.9.3-p327/lib -L/home/fabri/.rvm/usr/lib -Wl,-R/home/fabri/.rvm/usr/lib -L.  -rdynamic -Wl,-export-dynamic -L/home/fabri/.rvm/usr/lib  -Wl,-R/home/fabri/.rvm/usr/lib      -Wl,-R -Wl,/home/fabri/.rvm/rubies/ruby-1.9.3-p327/lib -L/home/fabri/.rvm/rubies/ruby-1.9.3-p327/lib -lruby -lncurses  -lpthread -lrt -ldl -lcrypt -lm   -lc"
+conftest.c: En la función ‘t’:
+conftest.c:5:53: error: ‘tgetnum’ no se declaró aquí (primer uso en esta función)
+conftest.c:5:53: nota: cada identificador sin declarar se reporta sólo una vez para cada función en el que aparece
+conftest.c:5:28: aviso: se define la variable ‘p’ pero no se usa [-Wunused-but-set-variable]
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: /*top*/
+4: int main() {return 0;}
+5: int t() { void ((*volatile p)()); p = (void ((*)()))tgetnum; return 0; }
+/* end */
+
+"gcc -o conftest -I/home/fabri/.rvm/rubies/ruby-1.9.3-p327/include/ruby-1.9.1/i686-linux -I/home/fabri/.rvm/rubies/ruby-1.9.3-p327/include/ruby-1.9.1/ruby/backward -I/home/fabri/.rvm/rubies/ruby-1.9.3-p327/include/ruby-1.9.1 -I/home/fabri/.rvm/src/ruby-1.9.3-p327/ext/readline  -D_FILE_OFFSET_BITS=64  -I/home/fabri/.rvm/usr/include  -O3 -ggdb -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration  -fPIC conftest.c  -L. -L/home/fabri/.rvm/rubies/ruby-1.9.3-p327/lib -Wl,-R/home/fabri/.rvm/rubies/ruby-1.9.3-p327/lib -L/home/fabri/.rvm/usr/lib -Wl,-R/home/fabri/.rvm/usr/lib -L.  -rdynamic -Wl,-export-dynamic -L/home/fabri/.rvm/usr/lib  -Wl,-R/home/fabri/.rvm/usr/lib      -Wl,-R -Wl,/home/fabri/.rvm/rubies/ruby-1.9.3-p327/lib -L/home/fabri/.rvm/rubies/ruby-1.9.3-p327/lib -lruby -lncurses  -lpthread -lrt -ldl -lcrypt -lm   -lc"
+conftest.c: En la función ‘t’:
+conftest.c:5:1: aviso: declaración implícita de la función ‘tgetnum’ [-Wimplicit-function-declaration]
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: /*top*/
+4: int main() {return 0;}
+5: int t() { tgetnum(); return 0; }
+/* end */
+
+--------------------
+
+have_header: checking for readline/readline.h... -------------------- yes
+
+"gcc -E -I/home/fabri/.rvm/rubies/ruby-1.9.3-p327/include/ruby-1.9.1/i686-linux -I/home/fabri/.rvm/rubies/ruby-1.9.3-p327/include/ruby-1.9.1/ruby/backward -I/home/fabri/.rvm/rubies/ruby-1.9.3-p327/include/ruby-1.9.1 -I/home/fabri/.rvm/src/ruby-1.9.3-p327/ext/readline  -D_FILE_OFFSET_BITS=64  -I/home/fabri/.rvm/usr/include  -O3 -ggdb -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration  -fPIC  conftest.c -o conftest.i"
+In file included from /home/fabri/.rvm/usr/include/readline/keymaps.h:35:0,
+                 from /home/fabri/.rvm/usr/include/readline/readline.h:37,
+                 from conftest.c:3:
+/home/fabri/.rvm/usr/include/readline/chardefs.h:90:0: aviso: se redefinió "ISALNUM" [activado por defecto]
+/home/fabri/.rvm/rubies/ruby-1.9.3-p327/include/ruby-1.9.1/ruby/ruby.h:1455:0: nota: esta es la ubicación de la definición previa
+/home/fabri/.rvm/usr/include/readline/chardefs.h:91:0: aviso: se redefinió "ISALPHA" [activado por defecto]
+/home/fabri/.rvm/rubies/ruby-1.9.3-p327/include/ruby-1.9.1/ruby/ruby.h:1456:0: nota: esta es la ubicación de la definición previa
+/home/fabri/.rvm/usr/include/readline/chardefs.h:92:0: aviso: se redefinió "ISDIGIT" [activado por defecto]
+/home/fabri/.rvm/rubies/ruby-1.9.3-p327/include/ruby-1.9.1/ruby/ruby.h:1457:0: nota: esta es la ubicación de la definición previa
+/home/fabri/.rvm/usr/include/readline/chardefs.h:93:0: aviso: se redefinió "ISLOWER" [activado por defecto]
+/home/fabri/.rvm/rubies/ruby-1.9.3-p327/include/ruby-1.9.1/ruby/ruby.h:1454:0: nota: esta es la ubicación de la definición previa
+/home/fabri/.rvm/usr/include/readline/chardefs.h:95:0: aviso: se redefinió "ISUPPER" [activado por defecto]
+/home/fabri/.rvm/rubies/ruby-1.9.3-p327/include/ruby-1.9.1/ruby/ruby.h:1453:0: nota: esta es la ubicación de la definición previa
+/home/fabri/.rvm/usr/include/readline/chardefs.h:96:0: aviso: se redefinió "ISXDIGIT" [activado por defecto]
+/home/fabri/.rvm/rubies/ruby-1.9.3-p327/include/ruby-1.9.1/ruby/ruby.h:1458:0: nota: esta es la ubicación de la definición previa
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <readline/readline.h>
+/* end */
+
+--------------------
+
+have_header: checking for readline/history.h... -------------------- yes
+
+"gcc -E -I/home/fabri/.rvm/rubies/ruby-1.9.3-p327/include/ruby-1.9.1/i686-linux -I/home/fabri/.rvm/rubies/ruby-1.9.3-p327/include/ruby-1.9.1/ruby/backward -I/home/fabri/.rvm/rubies/ruby-1.9.3-p327/include/ruby-1.9.1 -I/home/fabri/.rvm/src/ruby-1.9.3-p327/ext/readline  -D_FILE_OFFSET_BITS=64  -I/home/fabri/.rvm/usr/include  -O3 -ggdb -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration  -fPIC  conftest.c -o conftest.i"
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <readline/history.h>
+/* end */
+
+--------------------
+
+have_library: checking for readline() in -lreadline... -------------------- no
+
+"gcc -o conftest -I/home/fabri/.rvm/rubies/ruby-1.9.3-p327/include/ruby-1.9.1/i686-linux -I/home/fabri/.rvm/rubies/ruby-1.9.3-p327/include/ruby-1.9.1/ruby/backward -I/home/fabri/.rvm/rubies/ruby-1.9.3-p327/include/ruby-1.9.1 -I/home/fabri/.rvm/src/ruby-1.9.3-p327/ext/readline  -D_FILE_OFFSET_BITS=64  -I/home/fabri/.rvm/usr/include  -O3 -ggdb -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration  -fPIC conftest.c  -L. -L/home/fabri/.rvm/rubies/ruby-1.9.3-p327/lib -Wl,-R/home/fabri/.rvm/rubies/ruby-1.9.3-p327/lib -L/home/fabri/.rvm/usr/lib -Wl,-R/home/fabri/.rvm/usr/lib -L.  -rdynamic -Wl,-export-dynamic -L/home/fabri/.rvm/usr/lib  -Wl,-R/home/fabri/.rvm/usr/lib     -lncurses  -Wl,-R -Wl,/home/fabri/.rvm/rubies/ruby-1.9.3-p327/lib -L/home/fabri/.rvm/rubies/ruby-1.9.3-p327/lib -lruby -lreadline -lncurses  -lpthread -lrt -ldl -lcrypt -lm   -lc"
+conftest.c: En la función ‘t’:
+conftest.c:5:53: error: ‘readline’ no se declaró aquí (primer uso en esta función)
+conftest.c:5:53: nota: cada identificador sin declarar se reporta sólo una vez para cada función en el que aparece
+conftest.c:5:28: aviso: se define la variable ‘p’ pero no se usa [-Wunused-but-set-variable]
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: /*top*/
+4: int main() {return 0;}
+5: int t() { void ((*volatile p)()); p = (void ((*)()))readline; return 0; }
+/* end */
+
+"gcc -o conftest -I/home/fabri/.rvm/rubies/ruby-1.9.3-p327/include/ruby-1.9.1/i686-linux -I/home/fabri/.rvm/rubies/ruby-1.9.3-p327/include/ruby-1.9.1/ruby/backward -I/home/fabri/.rvm/rubies/ruby-1.9.3-p327/include/ruby-1.9.1 -I/home/fabri/.rvm/src/ruby-1.9.3-p327/ext/readline  -D_FILE_OFFSET_BITS=64  -I/home/fabri/.rvm/usr/include  -O3 -ggdb -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration  -fPIC conftest.c  -L. -L/home/fabri/.rvm/rubies/ruby-1.9.3-p327/lib -Wl,-R/home/fabri/.rvm/rubies/ruby-1.9.3-p327/lib -L/home/fabri/.rvm/usr/lib -Wl,-R/home/fabri/.rvm/usr/lib -L.  -rdynamic -Wl,-export-dynamic -L/home/fabri/.rvm/usr/lib  -Wl,-R/home/fabri/.rvm/usr/lib     -lncurses  -Wl,-R -Wl,/home/fabri/.rvm/rubies/ruby-1.9.3-p327/lib -L/home/fabri/.rvm/rubies/ruby-1.9.3-p327/lib -lruby -lreadline -lncurses  -lpthread -lrt -ldl -lcrypt -lm   -lc"
+conftest.c: En la función ‘t’:
+conftest.c:5:1: aviso: declaración implícita de la función ‘readline’ [-Wimplicit-function-declaration]
+/home/fabri/.rvm/usr/lib/libreadline.so: undefined reference to `tputs'
+/home/fabri/.rvm/usr/lib/libreadline.so: undefined reference to `tgoto'
+/home/fabri/.rvm/usr/lib/libreadline.so: undefined reference to `tgetflag'
+/home/fabri/.rvm/usr/lib/libreadline.so: undefined reference to `UP'
+/home/fabri/.rvm/usr/lib/libreadline.so: undefined reference to `tgetent'
+/home/fabri/.rvm/usr/lib/libreadline.so: undefined reference to `tgetnum'
+/home/fabri/.rvm/usr/lib/libreadline.so: undefined reference to `PC'
+/home/fabri/.rvm/usr/lib/libreadline.so: undefined reference to `tgetstr'
+/home/fabri/.rvm/usr/lib/libreadline.so: undefined reference to `BC'
+collect2: ld devolvió el estado de salida 1
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: /*top*/
+4: int main() {return 0;}
+5: int t() { readline(); return 0; }
+/* end */
+
+--------------------
+
+have_library: checking for readline() in -ledit... -------------------- no
+
+"gcc -o conftest -I/home/fabri/.rvm/rubies/ruby-1.9.3-p327/include/ruby-1.9.1/i686-linux -I/home/fabri/.rvm/rubies/ruby-1.9.3-p327/include/ruby-1.9.1/ruby/backward -I/home/fabri/.rvm/rubies/ruby-1.9.3-p327/include/ruby-1.9.1 -I/home/fabri/.rvm/src/ruby-1.9.3-p327/ext/readline  -D_FILE_OFFSET_BITS=64  -I/home/fabri/.rvm/usr/include  -O3 -ggdb -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration  -fPIC conftest.c  -L. -L/home/fabri/.rvm/rubies/ruby-1.9.3-p327/lib -Wl,-R/home/fabri/.rvm/rubies/ruby-1.9.3-p327/lib -L/home/fabri/.rvm/usr/lib -Wl,-R/home/fabri/.rvm/usr/lib -L.  -rdynamic -Wl,-export-dynamic -L/home/fabri/.rvm/usr/lib  -Wl,-R/home/fabri/.rvm/usr/lib     -lncurses  -Wl,-R -Wl,/home/fabri/.rvm/rubies/ruby-1.9.3-p327/lib -L/home/fabri/.rvm/rubies/ruby-1.9.3-p327/lib -lruby -ledit -lncurses  -lpthread -lrt -ldl -lcrypt -lm   -lc"
+conftest.c: En la función ‘t’:
+conftest.c:5:53: error: ‘readline’ no se declaró aquí (primer uso en esta función)
+conftest.c:5:53: nota: cada identificador sin declarar se reporta sólo una vez para cada función en el que aparece
+conftest.c:5:28: aviso: se define la variable ‘p’ pero no se usa [-Wunused-but-set-variable]
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: /*top*/
+4: int main() {return 0;}
+5: int t() { void ((*volatile p)()); p = (void ((*)()))readline; return 0; }
+/* end */
+
+"gcc -o conftest -I/home/fabri/.rvm/rubies/ruby-1.9.3-p327/include/ruby-1.9.1/i686-linux -I/home/fabri/.rvm/rubies/ruby-1.9.3-p327/include/ruby-1.9.1/ruby/backward -I/home/fabri/.rvm/rubies/ruby-1.9.3-p327/include/ruby-1.9.1 -I/home/fabri/.rvm/src/ruby-1.9.3-p327/ext/readline  -D_FILE_OFFSET_BITS=64  -I/home/fabri/.rvm/usr/include  -O3 -ggdb -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration  -fPIC conftest.c  -L. -L/home/fabri/.rvm/rubies/ruby-1.9.3-p327/lib -Wl,-R/home/fabri/.rvm/rubies/ruby-1.9.3-p327/lib -L/home/fabri/.rvm/usr/lib -Wl,-R/home/fabri/.rvm/usr/lib -L.  -rdynamic -Wl,-export-dynamic -L/home/fabri/.rvm/usr/lib  -Wl,-R/home/fabri/.rvm/usr/lib     -lncurses  -Wl,-R -Wl,/home/fabri/.rvm/rubies/ruby-1.9.3-p327/lib -L/home/fabri/.rvm/rubies/ruby-1.9.3-p327/lib -lruby -ledit -lncurses  -lpthread -lrt -ldl -lcrypt -lm   -lc"
+conftest.c: En la función ‘t’:
+conftest.c:5:1: aviso: declaración implícita de la función ‘readline’ [-Wimplicit-function-declaration]
+/usr/bin/ld: cannot find -ledit
+collect2: ld devolvió el estado de salida 1
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: /*top*/
+4: int main() {return 0;}
+5: int t() { readline(); return 0; }
+/* end */
+
+--------------------
+
+have_header: checking for editline/readline.h... -------------------- no
+
+"gcc -E -I/home/fabri/.rvm/rubies/ruby-1.9.3-p327/include/ruby-1.9.1/i686-linux -I/home/fabri/.rvm/rubies/ruby-1.9.3-p327/include/ruby-1.9.1/ruby/backward -I/home/fabri/.rvm/rubies/ruby-1.9.3-p327/include/ruby-1.9.1 -I/home/fabri/.rvm/src/ruby-1.9.3-p327/ext/readline  -D_FILE_OFFSET_BITS=64  -I/home/fabri/.rvm/usr/include  -O3 -ggdb -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration  -fPIC  conftest.c -o conftest.i"
+conftest.c:3:31: error fatal: editline/readline.h: No existe el archivo o el directorio
+compilación terminada.
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <editline/readline.h>
+/* end */
+
+--------------------
+

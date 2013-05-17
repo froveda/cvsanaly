@@ -1,0 +1,29 @@
+<%= form_for(@commits_line) do |f| %>
+  <% if @commits_line.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@commits_line.errors.count, "error") %> prohibited this commits_line from being saved:</h2>
+
+      <ul>
+      <% @commits_line.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :commit_id %><br />
+    <%= f.number_field :commit_id %>
+  </div>
+  <div class="field">
+    <%= f.label :added %><br />
+    <%= f.number_field :added %>
+  </div>
+  <div class="field">
+    <%= f.label :removed %><br />
+    <%= f.number_field :removed %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
