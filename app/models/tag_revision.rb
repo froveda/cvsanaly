@@ -3,4 +3,5 @@ class TagRevision < ActiveRecord::Base
 
   belongs_to :commit
   belongs_to :tag
+
 end

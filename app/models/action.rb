@@ -8,13 +8,8 @@ class Action < ActiveRecord::Base
 
   has_many :file_copies
 
-  def type
-    type_letter = read_attribute(:type)
-    return "Add" if(type_letter.eql?("A"))
-    return "Modified" if(type_letter.eql?("M"))
-    return "Deleted" if(type_letter.eql?("D"))
-    return "Moved (Renamed)" if(type_letter.eql?("V"))
-    return "Copied" if(type_letter.eql?("C"))
-    return "Replaced" if(type_letter.eql?("R"))
+  ## RailsAdmin
+  def title
+    "#{self.type} #{self.file_scm.title} to #{self.commit.title}"
   end
 end

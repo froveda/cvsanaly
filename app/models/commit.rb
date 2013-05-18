@@ -11,4 +11,13 @@ class Commit < ActiveRecord::Base
   belongs_to :author, :class_name => "Person", :foreign_key => :author_id
   belongs_to :commiter, :class_name => "Person", :foreign_key => :committer_id
   belongs_to :repository
+
+  def revision_str
+    "Rev " + self.rev
+  end
+
+  ## RailsAdmin
+  def title
+    self.revision_str
+  end
 end

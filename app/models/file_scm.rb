@@ -16,4 +16,21 @@ class FileScm < ActiveRecord::Base
     #self.file_links.collect{|file_link| file_link.commit}.sort{|a,b| a.date <=> b.date}
     self.actions.collect{|action| action.commit}.sort{|a,b| a.date <=> b.date}
   end
+
+  ## RailsAdmin
+  def title
+    self.file_name
+  end
+
+  rails_admin do
+    list do
+      field :file_name
+      field :repository
+    end
+
+    show do
+      field :file_name
+      field :repository
+    end
+  end
 end
