@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130518011227) do
+ActiveRecord::Schema.define(:version => 20130518201539) do
 
   create_table "action_files", :id => false, :force => true do |t|
     t.integer "file_id"
@@ -68,7 +68,6 @@ ActiveRecord::Schema.define(:version => 20130518011227) do
     t.integer "parent_id"
     t.integer "file_id"
     t.integer "commit_id"
-    t.string  "file_path", :limit => 4096
   end
 
   add_index "file_links", ["commit_id"], :name => "commit_id"
@@ -111,6 +110,22 @@ ActiveRecord::Schema.define(:version => 20130518011227) do
     t.integer  "halstead_md"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
+  end
+
+  create_table "metrics_evo", :force => true do |t|
+    t.integer  "branch_id"
+    t.datetime "date"
+    t.integer  "loc"
+    t.integer  "sloc"
+    t.integer  "files"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "months", :force => true do |t|
+    t.datetime "date"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "people", :force => true do |t|

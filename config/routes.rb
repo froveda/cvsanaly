@@ -1,4 +1,10 @@
 Cvsanaly::Application.routes.draw do
+  resources :metrics_evos
+
+
+  resources :months
+
+
   resources :commits_lines
 
 
@@ -49,6 +55,8 @@ Cvsanaly::Application.routes.draw do
   devise_for :users
 
   match "files_history" => "welcome#files_history"
+  match "bad_smell_by_sloc" => "welcome#bad_smell_by_sloc"
+  match "bad_smell_by_nfunctions" => "welcome#bad_smell_by_nfunctions"
 
   root :to => "welcome#home"
   # The priority is based upon order of creation:

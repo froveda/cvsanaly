@@ -1,0 +1,31 @@
+<h1>Listing metrics_evos</h1>
+
+<table>
+  <tr>
+    <th>Branch</th>
+    <th>Date</th>
+    <th>Loc</th>
+    <th>Sloc</th>
+    <th>Files</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @metrics_evos.each do |metrics_evo| %>
+  <tr>
+    <td><%= metrics_evo.branch_id %></td>
+    <td><%= metrics_evo.date %></td>
+    <td><%= metrics_evo.loc %></td>
+    <td><%= metrics_evo.sloc %></td>
+    <td><%= metrics_evo.files %></td>
+    <td><%= link_to 'Show', metrics_evo %></td>
+    <td><%= link_to 'Edit', edit_metrics_evo_path(metrics_evo) %></td>
+    <td><%= link_to 'Destroy', metrics_evo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Metrics evo', new_metrics_evo_path %>
