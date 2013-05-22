@@ -52,7 +52,7 @@ Cvsanaly::Application.routes.draw do
   resources :file_scms
 
 
-  devise_for :users
+  devise_for :users, :skip => 'invitation'
 
   match "files_history" => "welcome#files_history"
   match "bad_smell_by_sloc" => "welcome#bad_smell_by_sloc"

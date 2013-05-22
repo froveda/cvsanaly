@@ -1,0 +1,12 @@
+/* Flatly 2.3.1
+ * Bootswatch
+ *= require_self
+ *= require flatly/loader
+ *= require _font-awesome
+*/
+
+.container-login {
+    width: 300px;
+    height: 260px;
+    margin: 0 auto;
+}

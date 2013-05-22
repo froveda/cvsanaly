@@ -11,6 +11,7 @@ gem 'execjs'
 gem 'therubyracer'
 gem 'devise'
 gem 'activerecord-mysql-adapter'
+gem 'font-awesome-sass-rails'
 
 group :development do
   gem 'taps'
@@ -27,7 +28,12 @@ group :assets do
   # gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
+  # just put after rails asset defaults
+  gem 'twitter-bootswatch-rails', '~> 2.3.1.2'
 end
+
+# View Helpers Gem can go outside the assets group
+gem 'twitter-bootswatch-rails-helpers', '>= 2.3.1'
 
 gem 'jquery-rails'
 
