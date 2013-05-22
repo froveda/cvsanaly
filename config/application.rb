@@ -57,10 +57,12 @@ module Cvsanaly
     config.assets.enabled = true
 
     # Version of your assets, change this if you want to expire all your assets
-    config.assets.version = '1.0'
+    config.assets.version = '2.0'
 
     config.to_prepare do
       Devise::SessionsController.layout "devise"
     end
+
+    config.assets.prefix = Rails.root.join('tmp/assets').to_s
   end
 end
