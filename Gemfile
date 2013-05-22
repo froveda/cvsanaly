@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+ruby '1.9.3'
 gem 'rails', '3.2.11'
 
 # Bundle edge Rails instead:
@@ -12,6 +13,7 @@ gem 'therubyracer'
 gem 'devise'
 gem 'activerecord-mysql-adapter'
 gem 'font-awesome-sass-rails'
+gem 'twitter-bootswatch-rails', '~> 2.3.1.2'
 
 group :development do
   gem 'taps'
@@ -29,7 +31,6 @@ group :assets do
 
   gem 'uglifier', '>= 1.0.3'
   # just put after rails asset defaults
-  gem 'twitter-bootswatch-rails', '~> 2.3.1.2'
 end
 
 # View Helpers Gem can go outside the assets group
