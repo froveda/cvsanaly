@@ -10,3 +10,8 @@
     height: 260px;
     margin: 0 auto;
 }
+
+.container-fluid table td, .container-fluid table th{
+    padding-right: 28px;
+    text-align: center;
+}
