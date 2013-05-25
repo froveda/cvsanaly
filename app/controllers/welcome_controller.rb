@@ -7,14 +7,14 @@ class WelcomeController < ApplicationController
   end
 
   def files_history
-    @files = FileScm.all.select{|file| !file.type.eql?("unknown")}.sort{|a,b| a.file_name <=> b.file_name}
+    @files = FileScm.joins(:type).where("type <> 'unknown'").order("file_name DESC")
   end
 
   def bad_smell_by_sloc
-    @files = Metric.where("lang='java' and sloc > 100").group("file_id").collect{|metric| metric.file}
+    @files = FileScm.joins(:metrics).where("lang='java' and sloc > 100").group("file_id")
   end
 
   def bad_smell_by_nfunctions
-    @files = Metric.where("lang='java' and nfunctions > 10").group("file_id").collect{|metric| metric.file}
+    @files = FileScm.joins(:metrics).where("lang='java' and nfunctions > 10").group("file_id")
   end
 end
