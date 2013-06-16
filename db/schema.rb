@@ -44,12 +44,12 @@ ActiveRecord::Schema.define(:version => 20130518201539) do
   end
 
   create_table "commits_lines", :force => true do |t|
-    t.integer "commit_id"
-    t.integer "added"
-    t.integer "removed"
+    t.integer  "commit_id"
+    t.integer  "added"
+    t.integer  "removed"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
-
-  add_index "commits_lines", ["commit_id"], :name => "commit_id"
 
   create_table "file_copies", :force => true do |t|
     t.integer "to_id"
@@ -76,11 +76,11 @@ ActiveRecord::Schema.define(:version => 20130518201539) do
   add_index "file_links", ["parent_id"], :name => "parent_id"
 
   create_table "file_types", :force => true do |t|
-    t.integer "file_id"
-    t.text    "type",    :limit => 16777215
+    t.integer  "file_id"
+    t.text     "type"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
-
-  add_index "file_types", ["file_id"], :name => "file_id"
 
   create_table "files", :force => true do |t|
     t.string  "file_name"
@@ -91,28 +91,27 @@ ActiveRecord::Schema.define(:version => 20130518201539) do
   add_index "files", ["repository_id"], :name => "repository_id"
 
   create_table "metrics", :force => true do |t|
-    t.integer "file_id"
-    t.integer "commit_id"
-    t.text    "lang",            :limit => 255
-    t.integer "sloc"
-    t.integer "loc"
-    t.integer "ncomment"
-    t.integer "lcomment"
-    t.integer "lblank"
-    t.integer "nfunctions"
-    t.integer "mccabe_max"
-    t.integer "mccabe_min"
-    t.integer "mccabe_sum"
-    t.integer "mccabe_mean"
-    t.integer "mccabe_median"
-    t.integer "halstead_length"
-    t.integer "halstead_vol"
-    t.float   "halstead_level"
-    t.integer "halstead_md"
+    t.integer  "file_id"
+    t.integer  "commit_id"
+    t.text     "lang"
+    t.integer  "sloc"
+    t.integer  "loc"
+    t.integer  "ncomment"
+    t.integer  "lcomment"
+    t.integer  "lblank"
+    t.integer  "nfunctions"
+    t.integer  "mccabe_max"
+    t.integer  "mccabe_min"
+    t.integer  "mccabe_sum"
+    t.integer  "mccabe_mean"
+    t.integer  "mccabe_median"
+    t.integer  "halstead_length"
+    t.integer  "halstead_vol"
+    t.float    "halstead_level"
+    t.integer  "halstead_md"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
-
-  add_index "metrics", ["commit_id"], :name => "commit_id"
-  add_index "metrics", ["file_id"], :name => "file_id"
 
   create_table "metrics_evo", :force => true do |t|
     t.integer  "branch_id"

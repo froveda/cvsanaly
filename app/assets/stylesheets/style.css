@@ -4,6 +4,21 @@ html, body {
     margin: 0;
 }
 
+.filter{
+    float: left;
+    padding-right: 3px;
+}
+
 .clear{
     clear:both;
+}
+
+.spinner_container{
+    width: 100%;
+    text-align: center;
+}
+
+.spinner_container img {
+    width: 80px;
+    height: 80px;
 }

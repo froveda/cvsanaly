@@ -14,20 +14,19 @@ class WelcomeController < ApplicationController
     @commits = Commit.all(:select => "scmlog.rev, scmlog.committer_id, scmlog.date, SUM(metrics.loc) AS loc_sum", :joins => :metrics, :group => "metrics.commit_id", :order => "scmlog.date")
   end
 
-
   ## LOC/SLOC SUM in time
   def loc_sum_by_date
-    @from = Commit.first(:order => "date ASC").date
-    @to = Commit.first(:order => "date DESC").date
+    set_defaults
     @commiters = ['All'].concat(Person.all.collect{|person| [person.name, person.id]})
   end
 
   def loc_sum_by_date_filtered
-    from = "#{params[:date]['from(1i)']}-#{params[:date]['from(2i)']}-#{params[:date]['from(3i)']}"
-    to = "#{params[:date]['to(1i)']}-#{params[:date]['to(2i)']}-#{params[:date]['to(3i)']}"
+    from = "#{params[:filter]['from(1i)']}-#{params[:filter]['from(2i)']}-#{params[:filter]['from(3i)']}"
+    to = "#{params[:filter]['to(1i)']}-#{params[:filter]['to(2i)']}-#{params[:filter]['to(3i)']}"
     committer = params[:filter][:commiter]
+    repository = params[:filter][:repository]
 
-    conditions = "DATE(scmlog.date) between DATE('#{from}') and DATE('#{to}')"
+    conditions = "DATE(scmlog.date) between DATE('#{from}') and DATE('#{to}') AND scmlog.repository_id=#{repository}"
     conditions += "and scmlog.committer_id='#{committer}'" unless committer.eql?('All')
 
     @commits = Commit.all(:select => "DATE(scmlog.date) as date, SUM(metrics.loc) AS loc, SUM(metrics.sloc) AS sloc", :joins => :metrics, :group => "DATE(scmlog.date)", :conditions => conditions, :order => "DATE(scmlog.date)")
@@ -50,18 +49,33 @@ class WelcomeController < ApplicationController
   end
   #######################
 
+  ## Bad Smell by SLOC
   def bad_smell_by_sloc
-    @files = FileScm.joins(:metrics).where("lang='java' and sloc > 100").group("file_id")
+    @repositories = Repository.all.collect{|repository| [repository.name, repository.id]}
   end
 
-  def bad_smell_by_nfunctions
-    @files = FileScm.joins(:metrics).where("lang='java' and nfunctions > 10").group("file_id")
+  def bad_smell_by_sloc_filtered
+    repository = params[:filter][:repository]
+    @files = FileScm.joins(:metrics).where("repository_id=#{repository} AND lang='java' AND sloc > 100").group("file_id")
+    render :layout => false
   end
+  ####################
+
+  ## Bad Smell by Number of Methods
+  def bad_smell_by_nfunctions
+    @repositories = Repository.all.collect{|repository| [repository.name, repository.id]}
+  end
+
+  def bad_smell_by_nfunctions_filtered
+    repository = params[:filter][:repository]
+    @files = FileScm.joins(:metrics).where("repository_id=#{repository} AND lang='java' AND nfunctions > 10").group("file_id")
+    render :layout => false
+  end
+  ####################
 
   ## SUM of files modified in time
   def modifications_amount_by_commit
-    @from = Commit.first(:order => "date ASC").date
-    @to = Commit.first(:order => "date DESC").date
+    set_defaults
     @modifications = {"All" => "all"}.merge(Action::TYPES)
   end
 
@@ -69,9 +83,10 @@ class WelcomeController < ApplicationController
     from = "#{params[:filter]['from(1i)']}-#{params[:filter]['from(2i)']}-#{params[:filter]['from(3i)']}"
     to = "#{params[:filter]['to(1i)']}-#{params[:filter]['to(2i)']}-#{params[:filter]['to(3i)']}"
     modification = params[:filter][:modification]
+    repository = params[:filter][:repository]
 
-    conditions = "DATE(scmlog.date) between DATE('#{from}') and DATE('#{to}')"
-    conditions += "and actions.type='#{modification}'" unless modification.eql?('all')
+    conditions = "DATE(scmlog.date) between DATE('#{from}') and DATE('#{to}') AND scmlog.repository_id=#{repository}"
+    conditions += "AND actions.type='#{modification}'" unless modification.eql?('all')
 
     @commits = Commit.all(:select => "scmlog.rev, scmlog.committer_id, DATE(scmlog.date) as date, COUNT(*) AS sum, actions.type", :joins => :actions, :group => "DATE(scmlog.date), type", :conditions => conditions, :order => "DATE(scmlog.date) ASC")
 
@@ -131,5 +146,22 @@ class WelcomeController < ApplicationController
     # Add Rows and Values
     data_table.add_rows(rows)
     @chart = Chart.area_chart('Lines Added/Remove in time', 1024, 600, data_table)
+  end
+
+  def change_dates
+    repository = params[:repository]
+    set_dates(repository)
+    render :partial => "date_selectors", :locals => {:from => @from, :to => @to}, :layout => false
+  end
+
+private
+  def set_defaults
+    @repositories = Repository.all.collect{|repository| [repository.name, repository.id]}
+    set_dates(@repositories.first[1])
+  end
+
+  def set_dates(repository)
+    @from = Commit.first(:conditions => "repository_id = #{repository}", :order => "date ASC").date
+    @to = Commit.first(:conditions => "repository_id = #{repository}", :order => "date DESC").date
   end
 end

@@ -59,10 +59,13 @@ Cvsanaly::Application.routes.draw do
   match "modifications_amount_by_commit" => "welcome#modifications_amount_by_commit"
   match "modifications_amount_by_commit_filtered" => "welcome#modifications_amount_by_commit_filtered"
   match "bad_smell_by_sloc" => "welcome#bad_smell_by_sloc"
+  match "bad_smell_by_sloc_filtered" => "welcome#bad_smell_by_sloc_filtered"
   match "bad_smell_by_nfunctions" => "welcome#bad_smell_by_nfunctions"
+  match "bad_smell_by_nfunctions_filtered" => "welcome#bad_smell_by_nfunctions_filtered"
   match "commit_lines_graph" => "welcome#commit_lines_graph"
   match "loc_sum_by_date" => "welcome#loc_sum_by_date"
   match "loc_sum_by_date_filtered" => "welcome#loc_sum_by_date_filtered"
+  match "change_dates" => "welcome#change_dates"
 
   root :to => "welcome#home"
   # The priority is based upon order of creation:
