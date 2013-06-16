@@ -1,0 +1,30 @@
+<div id='chart'></div>
+<%= render_chart(@chart, 'chart') %>
+<br>
+
+<table>
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Added</th>
+      <th>Modified</th>
+      <th>Deleted</th>
+      <th>Renamed</th>
+      <th>Copied</th>
+      <th>Replaced</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @commits_hash.each_pair do |date, modifications| %>
+      <tr>
+        <td><%= date %></td>
+        <td><%= modifications['A'].nil? ? 0 : modifications['A'] %></td>
+        <td><%= modifications['M'].nil? ? 0 : modifications['M'] %></td>
+        <td><%= modifications['D'].nil? ? 0 : modifications['D'] %></td>
+        <td><%= modifications['V'].nil? ? 0 : modifications['V'] %></td>
+        <td><%= modifications['C'].nil? ? 0 : modifications['C'] %></td>
+        <td><%= modifications['R'].nil? ? 0 : modifications['R'] %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

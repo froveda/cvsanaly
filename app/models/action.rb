@@ -1,4 +1,13 @@
 class Action < ActiveRecord::Base
+  TYPES = {
+    "Added" => 'A',
+    "Modified" => 'M',
+    "Deleted" => 'D',
+    "Renamed" => 'V',
+    "Copied" => 'C',
+    "Replaced" => 'R'
+  }
+
   self.inheritance_column = nil
   attr_accessible :branch_id, :commit_id, :file_id, :type
 

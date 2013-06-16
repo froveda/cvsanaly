@@ -55,8 +55,14 @@ Cvsanaly::Application.routes.draw do
   devise_for :users, :skip => 'invitation'
 
   match "files_history" => "welcome#files_history"
+  match "loc_by_rev" => "welcome#loc_by_rev"
+  match "modifications_amount_by_commit" => "welcome#modifications_amount_by_commit"
+  match "modifications_amount_by_commit_filtered" => "welcome#modifications_amount_by_commit_filtered"
   match "bad_smell_by_sloc" => "welcome#bad_smell_by_sloc"
   match "bad_smell_by_nfunctions" => "welcome#bad_smell_by_nfunctions"
+  match "commit_lines_graph" => "welcome#commit_lines_graph"
+  match "loc_sum_by_date" => "welcome#loc_sum_by_date"
+  match "loc_sum_by_date_filtered" => "welcome#loc_sum_by_date_filtered"
 
   root :to => "welcome#home"
   # The priority is based upon order of creation:

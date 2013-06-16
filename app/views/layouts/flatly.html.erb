@@ -5,6 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= content_for?(:title) ? yield(:title) : "cvsanaly" %></title>
+
+    <script src='https://www.google.com/jsapi'></script>
+
     <%= csrf_meta_tags %>
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
@@ -13,7 +16,7 @@
     <![endif]-->
 
     <%= stylesheet_link_tag "flatly", :media => "all" %>
-
+    <%= stylesheet_link_tag "style", :media => "all" %>
     <%= yield(:page_stylesheet) if content_for?(:page_stylesheet) %>
 
     <!-- For third-generation iPad with high-resolution Retina display: -->
@@ -69,26 +72,24 @@
           <div style="padding: 8px 0;" class="well">
             <ul class="nav nav-list">
               <li class="nav-header">Features</li>
-              <li class="<%= 'active' if current_page?(files_history_path) %>"><%= link_to "Files History", files_history_path %></li>
+              <li class="<%= 'active' if current_page?(loc_sum_by_date_path) %>"><%= link_to "LOC/SLOC SUM in time", loc_sum_by_date_path %></li>
+              <li class="<%= 'active' if current_page?(modifications_amount_by_commit_path) %>"><%= link_to "SUM of Files Modified in time", modifications_amount_by_commit_path %></li>
               <li class="<%= 'active' if current_page?(bad_smell_by_sloc_path) %>"><%= link_to "Bad Smell Files by SLOC", bad_smell_by_sloc_path %></li>
               <li class="<%= 'active' if current_page?(bad_smell_by_nfunctions_path) %>"><%= link_to "Bad Smell Files by Number of Methods", bad_smell_by_nfunctions_path %></li>
-              <li class="divider"></li>
-              <li><a href="#">Help</a></li>
+              <li class="<%= 'active' if current_page?(files_history_path) %>"><%= link_to "Files History", files_history_path %></li>
+              <!--<li class="<%#= 'active' if current_page?(loc_by_rev_path) %>"><%#= link_to "LOC SUM by Commit", loc_by_rev_path %></li>-->
+              <!--<li class="<%#= 'active' if current_page?(commit_lines_graph_path) %>"><%#= link_to "Lines Added/Removed", commit_lines_graph_path %></li>-->
+              <!--<li class="divider"></li>-->
+              <!--<li><a href="#">Help</a></li>-->
             </ul>
           </div>
         </div><!--/span-->
         <div class="span9">
           <%= yield %>
-
         </div><!--/span-->
       </div><!--/row-->
 
       <hr>
-
-      <footer>
-        <p>&copy; Company 2013</p>
-      </footer>
-
     </div>
 
     <!-- Javascripts

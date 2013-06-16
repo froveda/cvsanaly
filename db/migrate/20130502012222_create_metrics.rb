@@ -1,5 +1,6 @@
 class CreateMetrics < ActiveRecord::Migration
   def change
+    begin
     create_table :metrics do |t|
       t.integer :file_id
       t.integer :commit_id
@@ -21,6 +22,8 @@ class CreateMetrics < ActiveRecord::Migration
       t.integer :halstead_md
 
       t.timestamps
+    end
+    rescue
     end
   end
 end

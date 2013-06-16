@@ -14,6 +14,7 @@ gem 'devise'
 gem 'activerecord-mysql-adapter'
 gem 'font-awesome-sass-rails'
 gem 'twitter-bootswatch-rails', '~> 2.3.1.2'
+gem "google_visualr", ">= 2.1"
 
 group :development do
   gem 'taps'

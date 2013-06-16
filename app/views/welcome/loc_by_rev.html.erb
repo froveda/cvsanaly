@@ -1,0 +1,20 @@
+<table>
+  <thead>
+    <tr>
+      <th>Revision</th>
+      <th>Date</th>
+      <th>Commiter</th>
+      <th>LOC Sum</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @commits.each do |commit| %>
+      <tr>
+        <td><%= commit.rev %></td>
+        <td><%= commit.date %></td>
+        <td><%= commit.commiter.name rescue '' %></td>
+        <td><%= commit.loc_sum.to_i rescue '' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
