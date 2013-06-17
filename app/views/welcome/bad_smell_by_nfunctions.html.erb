@@ -1,16 +1,26 @@
 <% content_for :page_javascript do %>
   <%= raw default_js %>
+  <%= javascript_include_tag 'autoNumeric' %>
+  <script type='text/javascript'>
+    $(document).ready(function(){
+      $("#filter_limit").autoNumeric('init',{aSep: '', mDec: '0'});
+    });
+  </script>
 <% end %>
 
 <h2>Bad Smell by Number of Methods</h2>
-<p>This feature shows the files that in any of the commits that it has been modified, its number of methods was greater than 10</p>
+<p>This feature shows the files that in any of the commits that it has been modified, its number of methods was greater than a limit (typed by the user)</p>
 
 <div class="filters">
   <%= form_tag bad_smell_by_nfunctions_filtered_path %>
-  <div class="filter_row clear">
-    <%= label_tag "Repository" %>
-    <%= select("filter","repository", @repositories, {:include_blank => false}, :id => "repository") %>
-  </div>
+    <div class="filter_row clear">
+      <%= label_tag "Repository" %>
+      <%= select("filter","repository", @repositories, {:include_blank => false}, :id => "repository") %>
+    </div>
+    <div class="filter_row clear">
+      <%= label_tag "Limit" %>
+      <%= text_field_tag("filter[limit]","10") %>
+    </div>
   </form>
   <%= submit_tag "Filter", :class => "btn btn-info filter_results_btn" %>
 </div>

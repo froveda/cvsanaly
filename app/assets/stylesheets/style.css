@@ -4,6 +4,9 @@ html, body {
     margin: 0;
 }
 
+.filter_results{
+    margin-top: 10px;
+}
 .filter{
     float: left;
     padding-right: 3px;

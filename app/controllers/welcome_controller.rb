@@ -45,7 +45,12 @@ class WelcomeController < ApplicationController
     # Add Rows and Values
     data_table.add_rows(rows)
     @chart = Chart.area_chart('LOC/SLOC in time', 1024, 600, data_table)
-    render :layout => false
+
+    if @commits.any?
+      render :layout => false
+    else
+      render :text => "No results were found."
+    end
   end
   #######################
 
@@ -56,8 +61,14 @@ class WelcomeController < ApplicationController
 
   def bad_smell_by_sloc_filtered
     repository = params[:filter][:repository]
-    @files = FileScm.joins(:metrics).where("repository_id=#{repository} AND lang='java' AND sloc > 100").group("file_id")
-    render :layout => false
+    limit = params[:filter][:limit]
+    @files = FileScm.joins(:metrics).where("repository_id=#{repository} AND lang='java' AND sloc > #{limit}").group("file_id")
+
+    if @files.any?
+      render :layout => false
+    else
+      render :text => "No results were found."
+    end
   end
   ####################
 
@@ -68,8 +79,14 @@ class WelcomeController < ApplicationController
 
   def bad_smell_by_nfunctions_filtered
     repository = params[:filter][:repository]
-    @files = FileScm.joins(:metrics).where("repository_id=#{repository} AND lang='java' AND nfunctions > 10").group("file_id")
-    render :layout => false
+    limit = params[:filter][:limit]
+    @files = FileScm.joins(:metrics).where("repository_id=#{repository} AND lang='java' AND nfunctions > #{limit}").group("file_id")
+    
+    if @files.any?
+      render :layout => false
+    else
+      render :text => "No results were found."  
+    end
   end
   ####################
 
@@ -125,7 +142,12 @@ class WelcomeController < ApplicationController
     # Add Rows and Values
     data_table.add_rows(rows)
     @chart = Chart.area_chart(title, 1024, 600, data_table)
-    render :layout => false
+    
+    if @metrics_evo.any?
+      render :layout => false
+    else
+      render :text => "No results were found."
+    end
   end
 
   ## SUM of files modified in time
@@ -179,7 +201,11 @@ class WelcomeController < ApplicationController
     data_table.add_rows(rows)
     @chart = Chart.area_chart('SUM of Files Modified in time', 1024, 600, data_table)
 
-    render :layout => false
+    if @commits_hash.any?
+      render :layout => false
+    else
+      render :text => "No results were found."
+    end
   end
   ################################
 
