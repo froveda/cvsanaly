@@ -68,6 +68,7 @@ Cvsanaly::Application.routes.draw do
   match "loc_sum_by_date" => "welcome#loc_sum_by_date"
   match "loc_sum_by_date_filtered" => "welcome#loc_sum_by_date_filtered"
   match "change_dates" => "welcome#change_dates"
+  match "change_dates_for_metrics_evo" => "welcome#change_dates_for_metrics_evo"
 
   root :to => "welcome#home"
   # The priority is based upon order of creation:

@@ -77,34 +77,54 @@ class WelcomeController < ApplicationController
   def metrics_evolution
     @repositories = Repository.all.collect{|repository| [repository.name, repository.id]}
     repository = Repository.find(@repositories.first[1])
-    @branches =  ['All'].concat(Branch.branches_by_repository(repository).collect{|branch| [branch.name, branch.id]})
+    @branches =  Branch.branches_by_repository(repository).collect{|branch| [branch.name, branch.id]}
+    set_dates(@repositories.first[1])
+    @from += 1.month
+    @types = ['All', 'LOC', 'SLOC', 'Files']
   end
 
   def metrics_evolution_filtered
-    from = "#{params[:filter]['from(1i)']}-#{params[:filter]['from(2i)']}-#{params[:filter]['from(3i)']}"
-    to = "#{params[:filter]['to(1i)']}-#{params[:filter]['to(2i)']}-#{params[:filter]['to(3i)']}"
-    committer = params[:filter][:commiter]
+    from = "#{params[:filter]['from(1i)']}-#{params[:filter]['from(2i)']}-01}"
+    to = "#{params[:filter]['to(1i)']}-#{params[:filter]['to(2i)']}-01}"
     repository = params[:filter][:repository]
+    branch = params[:filter][:branch]
+    @type = params[:filter][:type]
 
-    conditions = "DATE(scmlog.date) between DATE('#{from}') and DATE('#{to}') AND scmlog.repository_id=#{repository}"
-    conditions += "and scmlog.committer_id='#{committer}'" unless committer.eql?('All')
+    conditions = "DATE(date) between DATE('#{from}') and DATE('#{to}')"
 
-    @commits = Commit.all(:select => "DATE(scmlog.date) as date, SUM(metrics.loc) AS loc, SUM(metrics.sloc) AS sloc", :joins => :metrics, :group => "DATE(scmlog.date)", :conditions => conditions, :order => "DATE(scmlog.date)")
+    title = 'Metrics Evolution by Branch in time'
+    if params[:filter][:branch] && !params[:filter][:branch].eql?("All")
+      branch = Branch.find(params[:filter][:branch])
+      title += " for branch #{branch.name}"
+      conditions += " AND branch_id = #{branch.id}"
+    else
+      repository = Repository.find(params[:filter][:repository])
+      branches =  Branch.branches_by_repository(repository).collect{|branch| branch.id}
+      conditions += " AND branch_id IN (#{branches.join(',')})"
+    end
+
+    @metrics_evo = MetricsEvo.all(:select => "DATE(date) as date, branch_id, files, loc, sloc", :conditions => conditions, :order => "DATE(date)")
 
     # Add Column Headers
     data_table = GoogleVisualr::DataTable.new
     data_table.new_column('string', 'Date' )
-    data_table.new_column('number', 'LOC')
-    data_table.new_column('number', 'SLOC')
+    data_table.new_column('number', 'LOC')    if ['All','LOC'].include?(@type)
+    data_table.new_column('number', 'SLOC')   if ['All','SLOC'].include?(@type)
+    data_table.new_column('number', 'Files')  if ['All','Files'].include?(@type)
 
     rows = []
-    @commits.each do |commit|
-      rows.push([commit.date.strftime("%Y-%m-%d"), commit.loc, commit.sloc])
+    @metrics_evo.each do |metric_evo|
+      row = Array.new
+      row.push(metric_evo.date.strftime("%Y-%m-%d"))
+      row.push(metric_evo.loc)    if ['All','LOC'].include?(@type)
+      row.push(metric_evo.sloc)   if ['All','SLOC'].include?(@type)
+      row.push(metric_evo.files)  if ['All','Files'].include?(@type)
+      rows.push(row)
     end
 
     # Add Rows and Values
     data_table.add_rows(rows)
-    @chart = Chart.area_chart('LOC/SLOC in time', 1024, 600, data_table)
+    @chart = Chart.area_chart(title, 1024, 600, data_table)
     render :layout => false
   end
 
@@ -189,6 +209,12 @@ class WelcomeController < ApplicationController
     render :partial => "date_selectors", :locals => {:from => @from, :to => @to}, :layout => false
   end
 
+  def change_dates_for_metrics_evo
+    set_dates(params[:repository])
+    @from += 1.month
+    render :partial => "date_selectors_month", :locals => {:from => @from, :to => @to}
+  end
+
 private
   def set_defaults
     @repositories = Repository.all.collect{|repository| [repository.name, repository.id]}
@@ -199,4 +225,9 @@ private
     @from = Commit.first(:conditions => "repository_id = #{repository}", :order => "date ASC").date
     @to = Commit.first(:conditions => "repository_id = #{repository}", :order => "date DESC").date
   end
+
+  #def set_dates_for_metrics_evo(branches)
+  #  @from = MetricsEvo.first(:conditions => "branch_id in (#{branches.collect{|name,id| id}.join(',')})", :order => "date ASC").date
+  #  @to = MetricsEvo.first(:conditions => "branch_id in (#{branches.collect{|name,id| id}.join(',')})", :order => "date DESC").date
+  #end
 end

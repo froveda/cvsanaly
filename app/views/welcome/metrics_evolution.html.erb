@@ -1,5 +1,34 @@
 <% content_for :page_javascript do %>
-  <%= raw default_js %>
+  <%= javascript_include_tag 'jquery.form.min' %>
+  <script type='text/javascript'>
+    $(document).ready(function(){
+      $('.filter_results_btn').on('click', function(){
+        var options = {
+          success: showResponse
+        };
+        $('.filter_results').html('<%= content_tag :div, image_tag("spinner.gif"), :class => "spinner_container" %>');
+        $('form').ajaxSubmit(options);
+        return false;
+      });
+
+      $('#repository').on('change', function(){
+        $.post('<%= change_dates_for_metrics_evo_path %>', {repository: $(this).val()})
+            .done(function(data) {
+              $('.date_filters').html(data);
+            });
+      });
+
+      $('#branch').on('change', function(){
+        $.post('<%= change_dates_for_metrics_evo_path %>', {branch: $(this).val()})
+            .done(function(data) {
+              $('.date_filters').html(data);
+            });
+      });
+    });
+    function showResponse(responseText, statusText, xhr, $form)  {
+      $('.filter_results').html(responseText);
+    }
+  </script>"
 <% end %>
 
 <div class="filters">
@@ -11,8 +40,15 @@
       </div>
       <div class="filter">
         <%= label_tag "Branch" %>
-        <%= select("filter","branch", @branches, {:include_blank => false}) %>
+        <%= select("filter","branch", @branches, {:include_blank => false}, :id => "branch") %>
       </div>
+      <div class="filter">
+        <%= label_tag "Type" %>
+        <%= select("filter","type", @types, {:include_blank => false}, :id => "branch") %>
+      </div>
+    </div>
+    <div class="date_filters">
+      <%= render :partial => "date_selectors_month", :locals => {:from => @from, :to => @to} %>
     </div>
   </form>
   <%= submit_tag "Filter", :class => "btn btn-info filter_results_btn" %>

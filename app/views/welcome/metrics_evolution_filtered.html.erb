@@ -1,28 +1,29 @@
+<div id='chart'></div>
+<%= render_chart(@chart, 'chart') %>
+<br>
+
 <p>
-  <% @files.each do |file| %>
-    <h3><%= file.file_name %></h3>
-    <table>
-      <thead>
-      <tr>
-        <th>Revision</th>
-        <th>Commiter</th>
-        <th>Date</th>
-        <th>SLOC</th>
-        <th>LOC</th>
-      </tr>
-      </thead>
-      <tbody>
-      <% file.metrics.sort{|a,b| a.commit.rev <=> b.commit.rev}.each do |metric| %>
-        <tr>
-          <td><%= metric.file.file_name %></td>
-          <td><%= metric.commit.commiter.name %></td>
-          <td><%= metric.commit.date.strftime("%d/%m/%Y") %></td>
-          <td><%= metric.sloc %></td>
-          <td><%= metric.loc %></td>
-        </tr>
-      <% end %>
-      </tbody>
-    </table>
-    <br>
+<table>
+  <thead>
+  <tr>
+    <%= content_tag "th", 'Date' %>
+    <%= content_tag "th", 'Branch' %>
+    <%= content_tag "th", 'SLOC' if ['All','LOC'].include?(@type) %>
+    <%= content_tag "th", 'LOC' if['All','SLOC'].include?(@type) %>
+    <%= content_tag "th", 'Files' if ['All','Files'].include?(@type) %>
+  </tr>
+  </thead>
+  <tbody>
+  <% @metrics_evo.each do |metric_evo| %>
+    <tr>
+      <%= content_tag "td", metric_evo.date %>
+      <%= content_tag "td", metric_evo.branch.name %>
+      <%= content_tag "td", metric_evo.sloc if ['All','LOC'].include?(@type) %>
+      <%= content_tag "td", metric_evo.loc if ['All','SLOC'].include?(@type) %>
+      <%= content_tag "td", metric_evo.files if ['All','Files'].include?(@type) %>
+    </tr>
   <% end %>
+  </tbody>
+</table>
+<br>
 </p>
