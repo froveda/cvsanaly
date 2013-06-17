@@ -62,6 +62,8 @@ Cvsanaly::Application.routes.draw do
   match "bad_smell_by_sloc_filtered" => "welcome#bad_smell_by_sloc_filtered"
   match "bad_smell_by_nfunctions" => "welcome#bad_smell_by_nfunctions"
   match "bad_smell_by_nfunctions_filtered" => "welcome#bad_smell_by_nfunctions_filtered"
+  match "metrics_evolution" => "welcome#metrics_evolution"
+  match "metrics_evolution_filtered" => "welcome#metrics_evolution_filtered"
   match "commit_lines_graph" => "welcome#commit_lines_graph"
   match "loc_sum_by_date" => "welcome#loc_sum_by_date"
   match "loc_sum_by_date_filtered" => "welcome#loc_sum_by_date_filtered"

@@ -73,6 +73,41 @@ class WelcomeController < ApplicationController
   end
   ####################
 
+  ## Metrics Evolution by Branch in time
+  def metrics_evolution
+    @repositories = Repository.all.collect{|repository| [repository.name, repository.id]}
+    repository = Repository.find(@repositories.first[1])
+    @branches =  ['All'].concat(Branch.branches_by_repository(repository).collect{|branch| [branch.name, branch.id]})
+  end
+
+  def metrics_evolution_filtered
+    from = "#{params[:filter]['from(1i)']}-#{params[:filter]['from(2i)']}-#{params[:filter]['from(3i)']}"
+    to = "#{params[:filter]['to(1i)']}-#{params[:filter]['to(2i)']}-#{params[:filter]['to(3i)']}"
+    committer = params[:filter][:commiter]
+    repository = params[:filter][:repository]
+
+    conditions = "DATE(scmlog.date) between DATE('#{from}') and DATE('#{to}') AND scmlog.repository_id=#{repository}"
+    conditions += "and scmlog.committer_id='#{committer}'" unless committer.eql?('All')
+
+    @commits = Commit.all(:select => "DATE(scmlog.date) as date, SUM(metrics.loc) AS loc, SUM(metrics.sloc) AS sloc", :joins => :metrics, :group => "DATE(scmlog.date)", :conditions => conditions, :order => "DATE(scmlog.date)")
+
+    # Add Column Headers
+    data_table = GoogleVisualr::DataTable.new
+    data_table.new_column('string', 'Date' )
+    data_table.new_column('number', 'LOC')
+    data_table.new_column('number', 'SLOC')
+
+    rows = []
+    @commits.each do |commit|
+      rows.push([commit.date.strftime("%Y-%m-%d"), commit.loc, commit.sloc])
+    end
+
+    # Add Rows and Values
+    data_table.add_rows(rows)
+    @chart = Chart.area_chart('LOC/SLOC in time', 1024, 600, data_table)
+    render :layout => false
+  end
+
   ## SUM of files modified in time
   def modifications_amount_by_commit
     set_defaults

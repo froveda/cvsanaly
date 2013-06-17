@@ -74,6 +74,7 @@
               <li class="nav-header">Features</li>
               <li class="<%= 'active' if current_page?(loc_sum_by_date_path) %>"><%= link_to "LOC/SLOC SUM in time", loc_sum_by_date_path %></li>
               <li class="<%= 'active' if current_page?(modifications_amount_by_commit_path) %>"><%= link_to "SUM of Files Modified in time", modifications_amount_by_commit_path %></li>
+              <li class="<%= 'active' if current_page?(metrics_evolution_path) %>"><%= link_to "Metrics Evolution by Branch in time", metrics_evolution_path %></li>
               <li class="<%= 'active' if current_page?(bad_smell_by_sloc_path) %>"><%= link_to "Bad Smell Files by SLOC", bad_smell_by_sloc_path %></li>
               <li class="<%= 'active' if current_page?(bad_smell_by_nfunctions_path) %>"><%= link_to "Bad Smell Files by Number of Methods", bad_smell_by_nfunctions_path %></li>
               <!--<li class="<%#= 'active' if current_page?(files_history_path) %>"><%#= link_to "Files History", files_history_path %></li>-->

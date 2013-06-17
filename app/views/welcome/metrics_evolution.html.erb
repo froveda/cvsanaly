@@ -1,0 +1,22 @@
+<% content_for :page_javascript do %>
+  <%= raw default_js %>
+<% end %>
+
+<div class="filters">
+  <%= form_tag metrics_evolution_filtered_path %>
+    <div class="filter_row clear">
+      <div class="filter">
+        <%= label_tag "Repository" %>
+        <%= select("filter","repository", @repositories, {:include_blank => false}, :id => "repository") %>
+      </div>
+      <div class="filter">
+        <%= label_tag "Branch" %>
+        <%= select("filter","branch", @branches, {:include_blank => false}) %>
+      </div>
+    </div>
+  </form>
+  <%= submit_tag "Filter", :class => "btn btn-info filter_results_btn" %>
+</div>
+
+
+<div class="filter_results clear"></div>
