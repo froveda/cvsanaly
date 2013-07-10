@@ -27,7 +27,7 @@ class WelcomeController < ApplicationController
     repository = params[:filter][:repository]
 
     conditions = "DATE(scmlog.date) between DATE('#{from}') and DATE('#{to}') AND scmlog.repository_id=#{repository}"
-    conditions += "and scmlog.committer_id='#{committer}'" unless committer.eql?('All')
+    conditions += " and scmlog.committer_id=#{committer}" unless committer.eql?('All')
 
     @commits = Commit.all(:select => "DATE(scmlog.date) as date, SUM(metrics.loc) AS loc, SUM(metrics.sloc) AS sloc", :joins => :metrics, :group => "DATE(scmlog.date)", :conditions => conditions, :order => "DATE(scmlog.date)")
 
@@ -163,7 +163,7 @@ class WelcomeController < ApplicationController
     repository = params[:filter][:repository]
 
     conditions = "DATE(scmlog.date) between DATE('#{from}') and DATE('#{to}') AND scmlog.repository_id=#{repository}"
-    conditions += "AND actions.type='#{modification}'" unless modification.eql?('all')
+    conditions += " AND actions.type='#{modification}'" unless modification.eql?('all')
 
     @commits = Commit.all(:select => "scmlog.rev, scmlog.committer_id, DATE(scmlog.date) as date, COUNT(*) AS sum, actions.type", :joins => :actions, :group => "DATE(scmlog.date), type", :conditions => conditions, :order => "DATE(scmlog.date) ASC")
 
