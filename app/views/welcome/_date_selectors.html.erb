@@ -1,8 +1,10 @@
-<div class="filter_row clear">
-  <%= label_tag "From" %>
-  <%= date_select("filter", "from", :start_year => from.year, :end_year => to.year, :default => from, :order => [:day, :month, :year]) %>
-</div>
-<div class="filter_row clear">
-  <%= label_tag "To" %>
-  <%= date_select("filter", "to", :start_year => from.year, :end_year => to.year, :default => to, :order => [:day, :month, :year]) %>
-</div>
+<% if from and to %>
+  <div class="filter_row clear">
+    <%= label_tag "From" %>
+    <%= date_select("filter", "from", :start_year => from.year, :end_year => to.year, :default => from, :order => [:day, :month, :year]) %>
+  </div>
+  <div class="filter_row clear">
+    <%= label_tag "To" %>
+    <%= date_select("filter", "to", :start_year => from.year, :end_year => to.year, :default => to, :order => [:day, :month, :year]) %>
+  </div>
+<% end %>

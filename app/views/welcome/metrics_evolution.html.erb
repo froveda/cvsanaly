@@ -40,7 +40,7 @@
       </div>
       <div class="filter">
         <%= label_tag "Branch" %>
-        <%= select("filter","branch", @branches, {:include_blank => false}, :id => "branch") %>
+        <%= select("filter","branch", @branches, {:include_blank => false}, :id => "branch") if @branches and @branches.any? %>
       </div>
       <div class="filter">
         <%= label_tag "Type" %>

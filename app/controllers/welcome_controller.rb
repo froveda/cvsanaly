@@ -93,10 +93,12 @@ class WelcomeController < ApplicationController
   ## Metrics Evolution by Branch in time
   def metrics_evolution
     @repositories = Repository.all.collect{|repository| [repository.name, repository.id]}
-    repository = Repository.find(@repositories.first[1])
-    @branches =  Branch.branches_by_repository(repository).collect{|branch| [branch.name, branch.id]}
-    set_dates(@repositories.first[1])
-    @from += 1.month
+    if(@repositories.any?)
+      repository = Repository.find(@repositories.first[1])
+      @branches =  Branch.branches_by_repository(repository).collect{|branch| [branch.name, branch.id]}
+      set_dates(@repositories.first[1])
+      @from += 1.month
+    end
     @types = ['All', 'LOC', 'SLOC', 'Files']
   end
 
@@ -244,16 +246,11 @@ class WelcomeController < ApplicationController
 private
   def set_defaults
     @repositories = Repository.all.collect{|repository| [repository.name, repository.id]}
-    set_dates(@repositories.first[1])
+    set_dates(@repositories.first[1]) if @repositories.any?
   end
 
   def set_dates(repository)
     @from = Commit.first(:conditions => "repository_id = #{repository}", :order => "date ASC").date
     @to = Commit.first(:conditions => "repository_id = #{repository}", :order => "date DESC").date
   end
-
-  #def set_dates_for_metrics_evo(branches)
-  #  @from = MetricsEvo.first(:conditions => "branch_id in (#{branches.collect{|name,id| id}.join(',')})", :order => "date ASC").date
-  #  @to = MetricsEvo.first(:conditions => "branch_id in (#{branches.collect{|name,id| id}.join(',')})", :order => "date DESC").date
-  #end
 end
