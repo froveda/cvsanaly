@@ -52,7 +52,9 @@
           <div class="nav-collapse">
             <ul class="nav">
               <li class="active"><%= link_to 'Home', root_path %></li>
-              <li><%= link_to 'Admin', "/admin" %></li>
+              <% if can?(:acces, :rails_admin) %>
+                <li><%= link_to 'Admin', "/admin" %></li>
+              <% end %>
             </ul>
             <ul class="nav pull-right">
               <li>

@@ -28,3 +28,4 @@ end
 gem 'twitter-bootswatch-rails-helpers', '>= 2.3.1'
 
 gem 'jquery-rails'
+gem "cancancan"

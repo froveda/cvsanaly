@@ -1,9 +1,3 @@
-user = User.find_by_email("admin@example.com")
-unless user.nil?
-  user.destroy
-end
-
-user = User.find_by_email("froveda@gmail.com")
-if user.nil?
-  User.create!(:email=>'froveda@gmail.com',:password=>'aldMdRTjikL')
-end
+User.where(email: "admin@example.com").destroy_all
+User.where(email: "froveda@gmail.com").destroy_all
+User.find_or_create_by_email("user@example.com", password: 'password')
