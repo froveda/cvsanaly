@@ -16,8 +16,8 @@ It also use the [Rails Admin](https://github.com/sferik/rails_admin) gem to navi
 
 This application has been deployed as the thesis for the [Software Engineering](http://www.uca.edu.ar/index.php/carreras/showInfo/es/id/6) post-degre at the [Pontificia Universidad Católica Argentina](http://www.uca.edu.ar/index.php/home/index/es). 
 
-- [Click here](https://www.dropbox.com/s/vc2qm5nxy72v82j/CVSAnalY-Rails%20%28EN%29.pdf) to access to English version of Thesis document.
-- [Click here](https://www.dropbox.com/s/drljnpxs1m3nkfs/CVSAnalY-Rails%20%28ES%29.pdf?dl=0) to access to Spanish version of Thesis document.
+- [Click here](https://www.dropbox.com/s/vc2qm5nxy72v82j/CVSAnalY-Rails%20%28EN%29.pdf) to access to the English version of Thesis document.
+- [Click here](https://www.dropbox.com/s/drljnpxs1m3nkfs/CVSAnalY-Rails%20%28ES%29.pdf?dl=0) to access to the Spanish version of Thesis document.
 ---
 
 *NOTE: A refactoring of the code is being made to apply best RoR practices.*
