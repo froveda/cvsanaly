@@ -83,11 +83,6 @@
               <li class="<%= 'active' if current_page?(metrics_evolution_path) %>"><%= link_to "Metrics Evolution by Branch in time", metrics_evolution_path %></li>
               <li class="<%= 'active' if current_page?(bad_smell_by_sloc_path) %>"><%= link_to "Bad Smell Files by SLOC", bad_smell_by_sloc_path %></li>
               <li class="<%= 'active' if current_page?(bad_smell_by_nfunctions_path) %>"><%= link_to "Bad Smell Files by Number of Methods", bad_smell_by_nfunctions_path %></li>
-              <!--<li class="<%#= 'active' if current_page?(files_history_path) %>"><%#= link_to "Files History", files_history_path %></li>-->
-              <!--<li class="<%#= 'active' if current_page?(loc_by_rev_path) %>"><%#= link_to "LOC SUM by Commit", loc_by_rev_path %></li>-->
-              <!--<li class="<%#= 'active' if current_page?(commit_lines_graph_path) %>"><%#= link_to "Lines Added/Removed", commit_lines_graph_path %></li>-->
-              <!--<li class="divider"></li>-->
-              <!--<li><a href="#">Help</a></li>-->
             </ul>
           </div>
         </div><!--/span-->
@@ -95,8 +90,6 @@
           <%= yield %>
         </div><!--/span-->
       </div><!--/row-->
-
-      <hr>
     </div>
 
     <!-- Javascripts

@@ -1,0 +1,48 @@
+<% content_for :page_javascript do %>
+  <%= javascript_include_tag 'jquery.form.min' %>
+  <script type='text/javascript'>
+    $(document).ready(function(){
+      $('.filter_results_btn').on('click', function(){
+        var options = {
+          success: showResponse
+        };
+        $('.filter_results').html('<%= content_tag :div, image_tag("spinner.gif"), :class => "spinner_container" %>');
+        $('form').ajaxSubmit(options);
+        return false;
+      });
+
+      $('#filter_repository').on('change', function(){
+        $.post('<%= change_dates_for_metrics_evo_path %>', { filter: { repository: $(this).val()} })
+            .done(function(data) {
+              $('.date_filters').html(data);
+            });
+
+        $.post('<%= change_branches_path %>', { filter: { repository: $(this).val()} })
+            .done(function(data) {
+              $('.branches-filter-container').html(data);
+            });
+      });
+    });
+
+    function showResponse(responseText, statusText, xhr, $form)  {
+      $('.filter_results').html(responseText);
+    }
+  </script>"
+<% end %>
+
+<div class="filters">
+  <%= form_tag metrics_evolution_filtered_path %>
+    <div class="filter_row clear">
+      <%= render 'shared/repositories_selector', repositories: @repositories %>
+      <div class="branches-filter-container"><%= render 'shared/branches_selector', branches: @branches %></div>
+      <%= render 'shared/unit_types_selector', types: @metrics_types %>
+    </div>
+    <div class="date_filters">
+      <%= render 'shared/date_selectors_month', from: @from, to: @to %>
+    </div>
+  </form>
+  <%= submit_tag "Filter", :class => "btn btn-info filter_results_btn" %>
+</div>
+
+
+<div class="filter_results clear"></div>

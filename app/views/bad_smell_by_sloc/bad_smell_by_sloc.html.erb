@@ -1,0 +1,23 @@
+<% content_for :page_javascript do %>
+  <%= raw default_js %>
+  <%= javascript_include_tag 'autoNumeric' %>
+  <script type='text/javascript'>
+    $(document).ready(function(){
+      $("#filter_limit").autoNumeric('init',{aSep: '', mDec: '0'});
+    });
+  </script>
+<% end %>
+
+<h2>Bad Smell by SLOC</h2>
+<p>This feature shows the files that in any of the commits that it has been modified, its SLOC was greater than a limit (typed by the user)</p>
+
+<div class="filters">
+  <%= form_tag bad_smell_by_sloc_filtered_path %>
+    <%= render 'shared/repositories_selector', repositories: @repositories %>
+    <%= render 'shared/limit_text_input', limit: 100 %>
+  </form>
+  <%= submit_tag "Filter", :class => "btn btn-info filter_results_btn" %>
+</div>
+
+
+<div class="filter_results clear"></div>

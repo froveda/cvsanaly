@@ -3,13 +3,13 @@ class Commit < ActiveRecord::Base
 
   attr_accessible :author_id, :committer_id, :composed_rev, :date, :message, :repository_id, :rev
 
-  has_many :actions, :class_name => "Action", :foreign_key => :commit_id
-  has_many :file_copies, :foreign_key => :from_commit_id
-  has_many :tag_revisions, :foreign_key => :commit_id
+  has_many :actions, class_name: "Action", foreign_key: :commit_id
+  has_many :file_copies, foreign_key: :from_commit_id
+  has_many :tag_revisions, foreign_key: :commit_id
   has_many :metrics
 
-  belongs_to :author, :class_name => "Person", :foreign_key => :author_id
-  belongs_to :commiter, :class_name => "Person", :foreign_key => :committer_id
+  belongs_to :author, class_name: "Person"
+  belongs_to :committer, class_name: "Person"
   belongs_to :repository
 
   def revision_str
@@ -18,6 +18,6 @@ class Commit < ActiveRecord::Base
 
   ## RailsAdmin
   def title
-    self.revision_str
+    "Rev #{rev}"
   end
 end

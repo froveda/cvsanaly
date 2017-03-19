@@ -1,0 +1,6 @@
+<% if branches and branches.any? %>
+  <div class="filter">
+    <%= label_tag "Branch" %>
+    <%= select(:filter, :branch, options_from_collection_for_select(branches, :id, :name), { include_blank: false, prompt: 'All' }) %>
+  </div>
+<% end %>

@@ -1,0 +1,30 @@
+<div id='chart'>
+  <%= render_chart(@chart, 'chart') %>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <%= content_tag "th", 'Date' %>
+      <%= content_tag "th", 'Added'     if ['','A'].include?(@modification) %>
+      <%= content_tag "th", 'Modified'  if ['','M'].include?(@modification) %>
+      <%= content_tag "th", 'Deleted'   if ['','D'].include?(@modification) %>
+      <%= content_tag "th", 'Renamed'   if ['','V'].include?(@modification) %>
+      <%= content_tag "th", 'Copied'    if ['','C'].include?(@modification) %>
+      <%= content_tag "th", 'Replaced'  if ['','R'].include?(@modification) %>
+    </tr>
+  </thead>
+  <tbody>
+    <% @commits_hash.each_pair do |date, modifications| %>
+      <tr>
+        <%= content_tag "td", date %>
+        <%= content_tag( "td", modifications['A'] || 0 ) if ['','A'].include?(@modification) %>
+        <%= content_tag( "td", modifications['M'] || 0 ) if ['','M'].include?(@modification) %>
+        <%= content_tag( "td", modifications['D'] || 0 ) if ['','D'].include?(@modification) %>
+        <%= content_tag( "td", modifications['V'] || 0 ) if ['','V'].include?(@modification) %>
+        <%= content_tag( "td", modifications['C'] || 0 ) if ['','C'].include?(@modification) %>
+        <%= content_tag( "td", modifications['R'] || 0 ) if ['','R'].include?(@modification) %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

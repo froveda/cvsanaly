@@ -1,0 +1,4 @@
+<div class="filter">
+  <%= label_tag "Repository" %>
+  <%= select(:filter, :repository, options_from_collection_for_select(repositories, :id, :name), { include_blank: false }) %>
+</div>

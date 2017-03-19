@@ -13,13 +13,23 @@ module ApplicationHelper
           return false;
         });
 
-        $('#repository').on('change', function(){
-          $.post('#{change_dates_path}', {repository: $(this).val()})
+        $('#filter_repository').on('change', function(){
+          $.post('#{change_dates_path}', {filter: { repository: $(this).val()} })
           .done(function(data) {
             $('.date_filters').html(data);
           });
         });
+
+        if($('.committers-filter-container').length > 0) {
+          $('#filter_repository').on('change', function(){
+            $.post('#{change_commiters_path}', {filter: { repository: $(this).val()} })
+            .done(function(data) {
+              $('.committers-filter-container').html(data);
+            });
+          });
+        }
       });
+
       function showResponse(responseText, statusText, xhr, $form)  {
         $('.filter_results').html(responseText);
       }

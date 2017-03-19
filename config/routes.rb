@@ -3,21 +3,25 @@ Cvsanaly::Application.routes.draw do
 
   devise_for :users, :skip => 'invitation'
 
-  match "files_history" => "welcome#files_history"
-  match "loc_by_rev" => "welcome#loc_by_rev"
-  match "modifications_amount_by_commit" => "welcome#modifications_amount_by_commit"
-  match "modifications_amount_by_commit_filtered" => "welcome#modifications_amount_by_commit_filtered"
-  match "bad_smell_by_sloc" => "welcome#bad_smell_by_sloc"
-  match "bad_smell_by_sloc_filtered" => "welcome#bad_smell_by_sloc_filtered"
-  match "bad_smell_by_nfunctions" => "welcome#bad_smell_by_nfunctions"
-  match "bad_smell_by_nfunctions_filtered" => "welcome#bad_smell_by_nfunctions_filtered"
-  match "metrics_evolution" => "welcome#metrics_evolution"
-  match "metrics_evolution_filtered" => "welcome#metrics_evolution_filtered"
-  match "commit_lines_graph" => "welcome#commit_lines_graph"
-  match "loc_sum_by_date" => "welcome#loc_sum_by_date"
-  match "loc_sum_by_date_filtered" => "welcome#loc_sum_by_date_filtered"
-  match "change_dates" => "welcome#change_dates"
-  match "change_dates_for_metrics_evo" => "welcome#change_dates_for_metrics_evo"
+  match "loc_sum_by_date" => "loc_sloc_sum_in_time#loc_sum_by_date"
+  match "loc_sum_by_date_filtered" => "loc_sloc_sum_in_time#loc_sum_by_date_filtered"
+
+  match "modifications_amount_by_commit" => "modifications_amount_by_commit#modifications_amount_by_commit"
+  match "modifications_amount_by_commit_filtered" => "modifications_amount_by_commit#modifications_amount_by_commit_filtered"
+
+  match "metrics_evolution" => "metrics_evolution#metrics_evolution"
+  match "metrics_evolution_filtered" => "metrics_evolution#metrics_evolution_filtered"
+
+  match "bad_smell_by_sloc" => "bad_smell_by_sloc#bad_smell_by_sloc"
+  match "bad_smell_by_sloc_filtered" => "bad_smell_by_sloc#bad_smell_by_sloc_filtered"
+
+  match "bad_smell_by_nfunctions" => "bad_smell_by_nfunctions#bad_smell_by_nfunctions"
+  match "bad_smell_by_nfunctions_filtered" => "bad_smell_by_nfunctions#bad_smell_by_nfunctions_filtered"
+
+  match "change_dates" => "application#change_dates"
+  match "change_dates_for_metrics_evo" => "application#change_dates_for_metrics_evo"
+  match "change_branches" => "application#change_branches"
+  match "change_commiters" => "application#change_commiters"
 
   root :to => "welcome#home"
 end

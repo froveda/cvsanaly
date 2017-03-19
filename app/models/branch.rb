@@ -4,10 +4,6 @@ class Branch < ActiveRecord::Base
   has_many :actions
   has_many :metrics_evos
 
-  def self.branches_by_repository(repository)
-    repository.files.joins(:actions).select("distinct(actions.branch_id)").collect{|file| Branch.find(file.branch_id)}
-  end
-
   ## RailsAdmin
   rails_admin do
     list do

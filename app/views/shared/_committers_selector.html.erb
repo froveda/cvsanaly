@@ -1,0 +1,4 @@
+<div class="filter">
+  <%= label_tag "Committer" %>
+  <%= select(:filter, :committer, options_from_collection_for_select(committers, :id, :name), { include_blank: false, prompt: 'All' }) %>
+</div>

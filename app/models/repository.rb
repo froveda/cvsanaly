@@ -3,6 +3,11 @@ class Repository < ActiveRecord::Base
   attr_accessible :name, :type, :uri
 
   has_many :files, :class_name => "FileScm", :foreign_key => :repository_id
+  has_many :actions, through: :files
+  has_many :branches, through: :actions, uniq: true
+
+  has_many :commits
+  has_many :committers, through: :commits, uniq: true
 
   #RailsAdmin
   rails_admin do
