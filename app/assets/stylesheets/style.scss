@@ -1,0 +1,41 @@
+html, body {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.filter_results{
+    margin-top: 10px;
+}
+.filter{
+    float: left;
+    padding-right: 3px;
+}
+
+.clear{
+    clear:both;
+}
+
+.filter_results_btn {
+  width: 75px;
+  height: 37px;
+  text-align: center;
+  background-color: #007fff;
+
+  &:hover {
+    background-color: #0044cc;
+  }
+
+  i.fa {
+    font-size: 19px;
+    line-height: 19px;
+  }
+}
+
+.filter_results_btn[disabled]{
+  cursor: not-allowed;
+}
+
+.filter_results_btn[disabled]:hover{
+  background-color: #5faee3
+}

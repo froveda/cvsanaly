@@ -9,9 +9,8 @@ gem 'execjs'
 gem 'therubyracer', '~> 0.12.3'
 gem 'devise'
 gem 'activerecord-mysql-adapter'
-gem 'font-awesome-sass-rails'
 gem 'twitter-bootswatch-rails', '~> 2.3.1.2'
-gem "google_visualr", ">= 2.1"
+gem 'google_visualr', '>= 2.1'
 
 group :development do
   gem 'taps'
@@ -28,5 +27,6 @@ end
 gem 'twitter-bootswatch-rails-helpers', '>= 2.3.1'
 
 gem 'jquery-rails'
-gem "cancancan"
+gem 'cancancan'
 gem 'bootstrap-datepicker-rails'
+gem 'font-awesome-rails'

@@ -2,7 +2,6 @@
  * Bootswatch
  *= require_self
  *= require flatly/loader
- *= require _font-awesome
 */
 
 .container-login {

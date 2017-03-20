@@ -12,4 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require_tree .
+//= require autoNumeric
+//= require jquery.form.min.js
+//= require flatly.js
+//= require shared.js

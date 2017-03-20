@@ -1,18 +1,16 @@
-<% content_for :page_javascript do %>
-  <%= raw default_js %>
-<% end %>
-
 <div class="filters">
   <%= form_tag loc_sum_by_date_filtered_path %>
     <div class="filter_row clear">
       <%= render 'shared/repositories_selector', repositories: @repositories %>
       <div class="committers-filter-container"><%= render 'shared/committers_selector', committers: @committers %></div>
     </div>
+
     <div class="date_filters">
       <%= render 'shared/date_selectors', from: @from, to: @to %>
     </div>
+
+    <%= render 'shared/filter_restults_btn' %>
   </form>
-  <%= submit_tag "Filter", :class => "btn btn-info filter_results_btn" %>
 </div>
 
 <div class="filter_results clear"></div>

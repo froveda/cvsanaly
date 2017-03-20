@@ -1,0 +1,45 @@
+<% environment.context_class.instance_eval { include Rails.application.routes.url_helpers } %>
+
+$(document).ready(function(){
+  $('form').ajaxForm({
+    beforeSubmit: function(){
+      $('.filter_results_btn').html('<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>');
+      $('.filter_results_btn').prop('disabled', 'disabled');
+    },
+    success: function (responseText, statusText, xhr, $form)  {
+      $('.filter_results_btn').html('Filter');
+      $('.filter_results_btn').removeProp('disabled', 'disabled');
+      $('.filter_results').html(responseText);
+    }
+  });
+
+  if( $('.date_filters').length > 0 ) {
+    $('#filter_repository').on('change', function(){
+      $.post("<%= change_dates_path %>", { filter: { repository: $(this).val() } })
+          .done(function(data) {
+            $('.date_filters').html(data);
+          });
+    });
+  }
+
+  if( $('.committers-filter-container').length > 0 ) {
+    $('#filter_repository').on('change', function(){
+      $.post("<%= change_commiters_path %>", { filter: { repository: $(this).val() } })
+          .done(function(data) {
+            $('.committers-filter-container').html(data);
+          });
+    });
+  }
+
+  if( $('.branches-filter-container').length > 0 ) {
+    $('#filter_repository').on('change', function(){
+      $.post("<%= change_branches_path %>", { filter: { repository: $(this).val()} })
+          .done(function(data) {
+            $('.branches-filter-container').html(data);
+          });
+    });
+  }
+
+  $(".filter_limit").autoNumeric('init',{aSep: '', mDec: '0'});
+});
+
