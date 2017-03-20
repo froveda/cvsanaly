@@ -12,10 +12,6 @@ class Commit < ActiveRecord::Base
   belongs_to :committer, class_name: "Person"
   belongs_to :repository
 
-  def revision_str
-    "Rev " + self.rev
-  end
-
   ## RailsAdmin
   def title
     "Rev #{rev}"
