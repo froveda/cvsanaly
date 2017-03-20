@@ -12,7 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require datatables.min
 //= require autoNumeric
-//= require jquery.form.min.js
-//= require flatly.js
-//= require shared.js
+//= require jquery.form.min
+//= require flatly
+//= require shared

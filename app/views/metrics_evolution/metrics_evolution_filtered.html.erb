@@ -2,8 +2,7 @@
   <%= render_chart(metrics_evolution_chart(@metrics_evo, @type, @branch), 'chart') %>
 </div>
 
-<p>
-<table>
+<table class="data-table">
   <thead>
   <tr>
     <%= content_tag "th", 'Date' %>
@@ -25,5 +24,3 @@
   <% end %>
   </tbody>
 </table>
-<br>
-</p>

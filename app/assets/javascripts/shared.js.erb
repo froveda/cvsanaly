@@ -11,6 +11,7 @@ $(document).ready(function(){
       $('.filter_results_btn').html('Filter');
       $('.filter_results_btn').removeProp('disabled', 'disabled');
       $('.filter_results').html(responseText);
+      $('.data-table').DataTable();
     }
   });
 

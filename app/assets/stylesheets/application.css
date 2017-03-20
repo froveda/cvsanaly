@@ -11,6 +11,7 @@
  *= require bootstrap-datepicker
  *= require flatly
  *= require font-awesome
+ *= require datatables.min
  *= require style
  *= require_self
  */

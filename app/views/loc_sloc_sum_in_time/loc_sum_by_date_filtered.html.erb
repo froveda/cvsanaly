@@ -4,21 +4,21 @@
   <%= render_chart(loc_sum_by_date_chart(@commits), 'chart') %>
 </div>
 
-<table>
+<table class="data-table">
   <thead>
-  <tr>
-    <th>Date</th>
-    <th>LOC</th>
-    <th>SLOC</th>
-  </tr>
+    <tr>
+      <th>Date</th>
+      <th>LOC</th>
+      <th>SLOC</th>
+    </tr>
   </thead>
   <tbody>
-  <% @commits.each do |commit| %>
-    <tr>
-      <td><%= commit.date %></td>
-      <td><%= commit.loc.to_i %></td>
-      <td><%= commit.sloc.to_i %></td>
-    </tr>
-  <% end %>
+    <% @commits.each do |commit| %>
+      <tr>
+        <td><%= commit.date %></td>
+        <td><%= commit.loc.to_i %></td>
+        <td><%= commit.sloc.to_i %></td>
+      </tr>
+    <% end %>
   </tbody>
 </table>
