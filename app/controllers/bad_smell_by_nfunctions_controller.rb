@@ -7,12 +7,12 @@ class BadSmellByNfunctionsController < ApplicationController
 
   def bad_smell_by_nfunctions_filtered
     limit = params[:filter][:limit]
-    @files = FileScm.includes(:metrics)
-               .where(files: { repository_id: repository }, metrics:{ lang: 'java' })
-               .where(["metrics.nfunctions > ?", limit])
-               .group("metrics.file_id")
+    @metrics = Metric.includes(:commit, :file)
+                 .where(files: { repository_id: repository }, metrics:{ lang: 'java' })
+                 .where(["metrics.nfunctions > ?", limit])
+                 .group("metrics.file_id")
 
-    if @files.any?
+    if @metrics.any?
       render layout: false
     else
       render text: "No results were found."

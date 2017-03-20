@@ -15,7 +15,7 @@
   <tbody>
   <% @metrics_evo.each do |metric_evo| %>
     <tr>
-      <%= content_tag "td", metric_evo.date %>
+      <%= content_tag "td", metric_evo.date.strftime("%m/%d/%Y") %>
       <%= content_tag "td", metric_evo.branch.name %>
       <%= content_tag "td", metric_evo.sloc if ['All','SLOC'].include?(@type) %>
       <%= content_tag "td", metric_evo.loc if ['All','LOC'].include?(@type) %>

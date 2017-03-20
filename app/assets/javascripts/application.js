@@ -12,7 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require datatables.min
+//= require datatables
 //= require autoNumeric
 //= require jquery.form.min
 //= require flatly

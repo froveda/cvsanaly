@@ -9,16 +9,14 @@
   </tr>
   </thead>
   <tbody>
-  <% @files.each do |file| %>
-      <% file.metrics.sort{|a,b| a.commit.rev <=> b.commit.rev}.each do |metric| %>
-          <tr>
-            <td><%= metric.file.file_name %></td>
-            <td><%= metric.commit.committer.name %></td>
-            <td><%= metric.commit.date.strftime("%d/%m/%Y") %></td>
-            <td><%= metric.sloc %></td>
-            <td><%= metric.loc %></td>
-          </tr>
-      <% end %>
+  <% @metrics.each do |metric| %>
+      <tr>
+        <td><%= metric.file.file_name %></td>
+        <td><%= metric.commit.committer.name %></td>
+        <td><%= metric.commit.date.strftime("%m/%d/%Y") %></td>
+        <td><%= metric.sloc %></td>
+        <td><%= metric.loc %></td>
+      </tr>
   <% end %>
   </tbody>
 </table>

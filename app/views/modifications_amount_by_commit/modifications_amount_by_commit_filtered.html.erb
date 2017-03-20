@@ -17,7 +17,7 @@
   <tbody>
     <% @commits_hash.each_pair do |date, modifications| %>
       <tr>
-        <%= content_tag "td", date %>
+        <%= content_tag "td", date.strftime("%m/%d/%Y") %>
         <%= content_tag( "td", modifications['A'] || 0 ) if ['','A'].include?(@modification) %>
         <%= content_tag( "td", modifications['M'] || 0 ) if ['','M'].include?(@modification) %>
         <%= content_tag( "td", modifications['D'] || 0 ) if ['','D'].include?(@modification) %>

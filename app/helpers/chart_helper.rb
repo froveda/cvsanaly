@@ -36,7 +36,7 @@ module ChartHelper
     rows = []
     commits_hash.each_pair do |key, value|
       row = Array.new()
-      row.push(key)
+      row.push(key.strftime("%Y-%m-%d"))
       row.push(value['A'] || 0) if ['','A'].include?(modification)
       row.push(value['M'] || 0) if ['','M'].include?(modification)
       row.push(value['D'] || 0) if ['','D'].include?(modification)

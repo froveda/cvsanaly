@@ -28,8 +28,8 @@ class ModificationsAmountByCommitController < ApplicationController
   def set_commits_by_date
     @commits_hash = Hash.new()
     @commits.each do |commit|
-      @commits_hash[commit.date.strftime("%Y-%m-%d")] = Hash.new() unless @commits_hash[commit.date.strftime("%Y-%m-%d")]
-      @commits_hash[commit.date.strftime("%Y-%m-%d")][commit.type] = commit.sum
+      @commits_hash[commit.date] = Hash.new() unless @commits_hash[commit.date]
+      @commits_hash[commit.date][commit.type] = commit.sum
     end
   end
 end

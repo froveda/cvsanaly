@@ -1,26 +1,20 @@
-<p>
-  <% @files.each do |file| %>
-    <h3><%= file.file_name %></h3>
-    <table>
-      <thead>
+<table class="data-table">
+  <thead>
+    <tr>
+      <th>Revision</th>
+      <th>committer</th>
+      <th>Date</th>
+      <th>NFunctions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @metrics.each do |metric| %>
       <tr>
-        <th>Revision</th>
-        <th>committer</th>
-        <th>Date</th>
-        <th>NFunctions</th>
+        <td><%= metric.file.file_name %></td>
+        <td><%= metric.commit.committer.name %></td>
+        <td><%= metric.commit.date.strftime("%m/%d/%Y") %></td>
+        <td><%= metric.nfunctions %></td>
       </tr>
-      </thead>
-      <tbody>
-      <% file.metrics.sort{|a,b| a.commit.rev <=> b.commit.rev}.each do |metric| %>
-        <tr>
-          <td><%= metric.file.file_name %></td>
-          <td><%= metric.commit.committer.name %></td>
-          <td><%= metric.commit.date.strftime("%d/%m/%Y") %></td>
-          <td><%= metric.nfunctions %></td>
-        </tr>
-      <% end %>
-      </tbody>
-    </table>
-    <br>
-  <% end %>
-</p>
+    <% end %>
+  </tbody>
+</table>

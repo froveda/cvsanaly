@@ -7,12 +7,12 @@ class BadSmellBySlocController < ApplicationController
 
   def bad_smell_by_sloc_filtered
     limit = params[:filter][:limit]
-    @files = FileScm.includes(:metrics)
+    @metrics = Metric.includes(:commit, :file)
                  .where(files: { repository_id: repository }, metrics:{ lang: 'java' })
                  .where(["metrics.sloc > ?", limit])
                  .group("metrics.file_id")
 
-    if @files.any?
+    if @metrics.any?
       render layout: false
     else
       render text: "No results were found."
