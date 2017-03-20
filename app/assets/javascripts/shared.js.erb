@@ -3,6 +3,7 @@
 $(document).ready(function(){
   $('form').ajaxForm({
     beforeSubmit: function(){
+      $('.filter_results').html('');
       $('.filter_results_btn').html('<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>');
       $('.filter_results_btn').prop('disabled', 'disabled');
     },

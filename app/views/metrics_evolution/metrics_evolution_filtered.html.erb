@@ -1,5 +1,5 @@
 <div id='chart'>
-  <%= render_chart(@chart, 'chart') %>
+  <%= render_chart(metrics_evolution_chart(@metrics_evo, @type, @branch), 'chart') %>
 </div>
 
 <p>
@@ -8,8 +8,8 @@
   <tr>
     <%= content_tag "th", 'Date' %>
     <%= content_tag "th", 'Branch' %>
-    <%= content_tag "th", 'SLOC' if ['All','LOC'].include?(@type) %>
-    <%= content_tag "th", 'LOC' if['All','SLOC'].include?(@type) %>
+    <%= content_tag "th", 'SLOC' if ['All','SLOC'].include?(@type) %>
+    <%= content_tag "th", 'LOC' if['All','LOC'].include?(@type) %>
     <%= content_tag "th", 'Files' if ['All','Files'].include?(@type) %>
   </tr>
   </thead>
@@ -18,8 +18,8 @@
     <tr>
       <%= content_tag "td", metric_evo.date %>
       <%= content_tag "td", metric_evo.branch.name %>
-      <%= content_tag "td", metric_evo.sloc if ['All','LOC'].include?(@type) %>
-      <%= content_tag "td", metric_evo.loc if ['All','SLOC'].include?(@type) %>
+      <%= content_tag "td", metric_evo.sloc if ['All','SLOC'].include?(@type) %>
+      <%= content_tag "td", metric_evo.loc if ['All','LOC'].include?(@type) %>
       <%= content_tag "td", metric_evo.files if ['All','Files'].include?(@type) %>
     </tr>
   <% end %>

@@ -86,8 +86,4 @@ class ApplicationController < ActionController::Base
   def branch
     @branch ||= (Branch.find(params[:filter][:branch]) rescue nil)
   end
-
-  def type
-    @type ||= params[:filter][:type]
-  end
 end

@@ -7,7 +7,7 @@ class BadSmellBySlocController < ApplicationController
 
   def bad_smell_by_sloc_filtered
     limit = params[:filter][:limit]
-    @files = FileScm.joins(:metrics)
+    @files = FileScm.includes(:metrics)
                  .where(files: { repository_id: repository }, metrics:{ lang: 'java' })
                  .where(["metrics.sloc > ?", limit])
                  .group("metrics.file_id")

@@ -14,38 +14,11 @@ class MetricsEvolutionController < ApplicationController
                      .where(date: (from .. to), branch_id: @branches.map(&:id))
                      .order("date asc")
 
-    set_metrics_evolution_chart
-
+    @type = params[:filter][:type]
     if @metrics_evo.any?
       render :layout => false
     else
       render :text => "No results were found."
     end
-  end
-
-  private
-  def set_metrics_evolution_chart
-    # Add Column Headers
-    data_table = GoogleVisualr::DataTable.new
-    data_table.new_column('string', 'Date' )
-    data_table.new_column('number', 'LOC')    if ['All','LOC'].include?(type)
-    data_table.new_column('number', 'SLOC')   if ['All','SLOC'].include?(type)
-    data_table.new_column('number', 'Files')  if ['All','Files'].include?(type)
-
-    rows = []
-    @metrics_evo.each do |metric_evo|
-      row = Array.new
-      row.push(metric_evo.date.strftime("%Y-%m-%d"))
-      row.push(metric_evo.loc)    if ['All','LOC'].include?(type)
-      row.push(metric_evo.sloc)   if ['All','SLOC'].include?(type)
-      row.push(metric_evo.files)  if ['All','Files'].include?(type)
-      rows.push(row)
-    end
-
-    # Add Rows and Values
-    data_table.add_rows(rows)
-    title = "Metrics Evolution by Branch in time"
-    title += " for #{branch.name} branch" unless branch.nil?
-    @chart = Chart.area_chart(title, 1024, 600, data_table)
   end
 end
