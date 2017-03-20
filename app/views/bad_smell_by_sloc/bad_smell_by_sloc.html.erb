@@ -2,7 +2,7 @@
 <p>This feature shows the files that in any of the commits that it has been modified, its SLOC was greater than a limit (typed by the user)</p>
 
 <div class="filters">
-  <%= form_tag bad_smell_by_sloc_filtered_path %>
+  <%= form_tag bad_smell_by_sloc_filtered_path, class: 'feature-form' %>
     <%= render 'shared/repositories_selector', repositories: @repositories %>
     <%= render 'shared/limit_text_input', limit: 100 %>
     <%= render 'shared/filter_restults_btn' %>

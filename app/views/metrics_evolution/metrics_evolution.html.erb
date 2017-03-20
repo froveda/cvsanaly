@@ -1,5 +1,5 @@
 <div class="filters">
-  <%= form_tag metrics_evolution_filtered_path %>
+  <%= form_tag metrics_evolution_filtered_path, class: 'feature-form' %>
     <div class="filter_row clear">
       <%= render 'shared/repositories_selector', repositories: @repositories %>
       <div class="branches-filter-container"><%= render 'shared/branches_selector', branches: @branches %></div>

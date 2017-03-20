@@ -1,5 +1,5 @@
 <div class="filters">
-  <%= form_tag modifications_amount_by_commit_filtered_path %>
+  <%= form_tag modifications_amount_by_commit_filtered_path, class: 'feature-form' %>
 
     <div class="filter_row clear">
       <%= render 'shared/repositories_selector', repositories: @repositories %>

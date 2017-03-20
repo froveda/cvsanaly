@@ -1,7 +1,7 @@
 <% environment.context_class.instance_eval { include Rails.application.routes.url_helpers } %>
 
 $(document).ready(function(){
-  $('form').ajaxForm({
+  $('form.feature-form').ajaxForm({
     beforeSubmit: function(){
       $('.filter_results').html('');
       $('.filter_results_btn').html('<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>');

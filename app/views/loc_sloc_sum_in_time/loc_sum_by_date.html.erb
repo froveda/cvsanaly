@@ -1,5 +1,5 @@
 <div class="filters">
-  <%= form_tag loc_sum_by_date_filtered_path %>
+  <%= form_tag loc_sum_by_date_filtered_path, class: 'feature-form' %>
     <div class="filter_row clear">
       <%= render 'shared/repositories_selector', repositories: @repositories %>
       <div class="committers-filter-container"><%= render 'shared/committers_selector', committers: @committers %></div>
