@@ -1,1 +1,1 @@
-sUser.find_or_create_by_email("user@example.com", password: 'password')
+User.find_or_create_by_email("user@example.com", password: 'password')

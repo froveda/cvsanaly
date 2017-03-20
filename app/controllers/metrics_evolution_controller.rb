@@ -6,7 +6,7 @@ class MetricsEvolutionController < ApplicationController
 
   ## Metrics Evolution by Branch in time
   def metrics_evolution
-    @from += 1.month
+    @from += 1.month unless @from.blank?
   end
 
   def metrics_evolution_filtered
