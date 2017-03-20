@@ -13,9 +13,9 @@ class BadSmellBySlocController < ApplicationController
                  .group("metrics.file_id")
 
     if @files.any?
-      render :layout => false
+      render layout: false
     else
-      render :text => "No results were found."
+      render text: "No results were found."
     end
   end
 end

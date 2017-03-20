@@ -16,9 +16,9 @@ class LocSlocSumInTimeController < ApplicationController
     @commits = @commits.where(scmlog: { committer_id: committer }) unless committer.nil?
 
     if @commits.any?
-      render :layout => false
+      render layout: false
     else
-      render :text => "No results were found."
+      render text: "No results were found."
     end
   end
 end

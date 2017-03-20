@@ -18,9 +18,9 @@ class ModificationsAmountByCommitController < ApplicationController
     set_commits_by_date
     
     if @commits_hash.any?
-      render :layout => false
+      render layout: false
     else
-      render :text => "No results were found."
+      render text: "No results were found."
     end
   end
 

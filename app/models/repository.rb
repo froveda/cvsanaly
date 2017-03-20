@@ -2,7 +2,7 @@ class Repository < ActiveRecord::Base
   self.inheritance_column = nil
   attr_accessible :name, :type, :uri
 
-  has_many :files, :class_name => "FileScm", :foreign_key => :repository_id
+  has_many :files, class_name: "FileScm"
   has_many :actions, through: :files
   has_many :branches, through: :actions, uniq: true
 
