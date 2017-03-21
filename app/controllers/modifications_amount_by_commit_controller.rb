@@ -9,27 +9,22 @@ class ModificationsAmountByCommitController < ApplicationController
 
   def modifications_amount_by_commit_filtered
     @commits = Commit.joins(:actions)
-                 .select('scmlog.rev, scmlog.committer_id, DATE(scmlog.date) as date, COUNT(*) AS sum, actions.type')
+                 .select('DATE(scmlog.date) as date,
+                          CONVERT( SUM(CASE WHEN actions.type = "A" THEN 1 ELSE 0 END), UNSIGNED INTEGER ) as sum_a,
+                          CONVERT( SUM(CASE WHEN actions.type = "M" THEN 1 ELSE 0 END), UNSIGNED INTEGER ) as sum_m,
+                          CONVERT( SUM(CASE WHEN actions.type = "D" THEN 1 ELSE 0 END), UNSIGNED INTEGER ) as sum_d,
+                          CONVERT( SUM(CASE WHEN actions.type = "V" THEN 1 ELSE 0 END), UNSIGNED INTEGER ) as sum_v,
+                          CONVERT( SUM(CASE WHEN actions.type = "C" THEN 1 ELSE 0 END), UNSIGNED INTEGER ) as sum_c,
+                          CONVERT( SUM(CASE WHEN actions.type = "R" THEN 1 ELSE 0 END), UNSIGNED INTEGER ) as sum_r')
                  .where(scmlog: { date: (from .. to), repository_id: repository })
-                 .group('DATE(scmlog.date), type')
+                 .group('DATE(scmlog.date)')
                  .order('DATE(scmlog.date) ASC')
     @commits = @commits.where(actions: { type: modification }) unless modification.blank?
-
-    set_commits_by_date
     
-    if @commits_hash.any?
+    if @commits.any?
       render layout: false
     else
       render text: "No results were found."
-    end
-  end
-
-  private
-  def set_commits_by_date
-    @commits_hash = Hash.new()
-    @commits.each do |commit|
-      @commits_hash[commit.date] = Hash.new() unless @commits_hash[commit.date]
-      @commits_hash[commit.date][commit.type] = commit.sum
     end
   end
 end

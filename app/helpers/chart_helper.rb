@@ -21,7 +21,7 @@ module ChartHelper
     return area_chart('LOC/SLOC in time', 1024, 600, data_table)
   end
 
-  def modifications_amount_by_commit_chart(commits_hash, modification)
+  def modifications_amount_by_commit_chart(commits, modification)
     data_table = GoogleVisualr::DataTable.new
 
     # Add Column Headers
@@ -34,15 +34,15 @@ module ChartHelper
     data_table.new_column('number', 'Replaced') if ['','R'].include?(modification)
 
     rows = []
-    commits_hash.each_pair do |key, value|
+    commits.each do |commit|
       row = Array.new()
-      row.push(key.strftime("%Y-%m-%d"))
-      row.push(value['A'] || 0) if ['','A'].include?(modification)
-      row.push(value['M'] || 0) if ['','M'].include?(modification)
-      row.push(value['D'] || 0) if ['','D'].include?(modification)
-      row.push(value['V'] || 0) if ['','V'].include?(modification)
-      row.push(value['C'] || 0) if ['','C'].include?(modification)
-      row.push(value['R'] || 0) if ['','R'].include?(modification)
+      row.push(commit.date.strftime("%Y-%m-%d"))
+      row.push(commit.sum_a) if ['','A'].include?(modification)
+      row.push(commit.sum_m) if ['','M'].include?(modification)
+      row.push(commit.sum_d) if ['','D'].include?(modification)
+      row.push(commit.sum_v) if ['','V'].include?(modification)
+      row.push(commit.sum_c) if ['','C'].include?(modification)
+      row.push(commit.sum_r) if ['','R'].include?(modification)
       rows.push(row)
     end
 

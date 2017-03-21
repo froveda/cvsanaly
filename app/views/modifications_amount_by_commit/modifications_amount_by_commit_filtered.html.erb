@@ -1,5 +1,5 @@
 <div id='chart'>
-  <%= render_chart(modifications_amount_by_commit_chart(@commits_hash, @modification), 'chart') %>
+  <%= render_chart(modifications_amount_by_commit_chart(@commits, @modification), 'chart') %>
 </div>
 
 <table class="data-table">
@@ -15,15 +15,15 @@
     </tr>
   </thead>
   <tbody>
-    <% @commits_hash.each_pair do |date, modifications| %>
+    <% @commits.each do |commit| %>
       <tr>
-        <%= content_tag "td", date.strftime("%m/%d/%Y") %>
-        <%= content_tag( "td", modifications['A'] || 0 ) if ['','A'].include?(@modification) %>
-        <%= content_tag( "td", modifications['M'] || 0 ) if ['','M'].include?(@modification) %>
-        <%= content_tag( "td", modifications['D'] || 0 ) if ['','D'].include?(@modification) %>
-        <%= content_tag( "td", modifications['V'] || 0 ) if ['','V'].include?(@modification) %>
-        <%= content_tag( "td", modifications['C'] || 0 ) if ['','C'].include?(@modification) %>
-        <%= content_tag( "td", modifications['R'] || 0 ) if ['','R'].include?(@modification) %>
+        <%= content_tag "td", commit.date.strftime("%m/%d/%Y") %>
+        <%= content_tag( "td", commit.sum_a ) if ['','A'].include?(@modification) %>
+        <%= content_tag( "td", commit.sum_m ) if ['','M'].include?(@modification) %>
+        <%= content_tag( "td", commit.sum_d ) if ['','D'].include?(@modification) %>
+        <%= content_tag( "td", commit.sum_v ) if ['','V'].include?(@modification) %>
+        <%= content_tag( "td", commit.sum_c ) if ['','C'].include?(@modification) %>
+        <%= content_tag( "td", commit.sum_r ) if ['','R'].include?(@modification) %>
       </tr>
     <% end %>
   </tbody>
