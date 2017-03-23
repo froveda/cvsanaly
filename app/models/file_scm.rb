@@ -1,5 +1,5 @@
 class FileScm < ActiveRecord::Base
-  set_table_name :files
+  self.table_name = :files
   attr_accessible :file_name, :repository_id
 
   has_many :actions, foreign_key: :file_id

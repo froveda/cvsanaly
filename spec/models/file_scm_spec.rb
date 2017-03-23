@@ -14,4 +14,9 @@ describe FileScm do
     let(:object) { build(:file_scm, repository: nil) }
     it_behaves_like "validating presence", :repository
   end
+
+  it "returns the title as the file_scm file_name" do
+    file = build(:file_scm)
+    expect(file.title).to eq(file.file_name)
+  end
 end
