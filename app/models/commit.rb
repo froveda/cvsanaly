@@ -12,6 +12,10 @@ class Commit < ActiveRecord::Base
   belongs_to :committer, class_name: "Person"
   belongs_to :repository
 
+  validates_presence_of :committer_id, unless: :author_id?
+  validates_presence_of :author_id, unless: :committer_id?
+  validates_presence_of :repository, :date, :message
+
   ## RailsAdmin
   def title
     "Rev #{rev}"
