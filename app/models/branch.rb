@@ -4,6 +4,8 @@ class Branch < ActiveRecord::Base
   has_many :actions
   has_many :metrics_evos
 
+  validates_presence_of :name
+
   ## RailsAdmin
   rails_admin do
     list do
