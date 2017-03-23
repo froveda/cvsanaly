@@ -38,3 +38,13 @@ RSpec.shared_examples "validating number greater than or equal to a count" do |a
     expect(object.errors[attribute]).to include(I18n.t('errors.messages.greater_than_or_equal_to', count: count))
   end
 end
+
+## Wrong format
+RSpec.shared_examples "validating format" do |attribute|
+  let(:attribute) { attribute }
+
+  it "must be invalid" do
+    expect(object).to_not be_valid
+    expect(object.errors[attribute]).to include(I18n.t('errors.messages.invalid'))
+  end
+end
