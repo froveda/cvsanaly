@@ -16,6 +16,9 @@ class Action < ActiveRecord::Base
   belongs_to :branch
   has_many :file_copies
 
+  validates_presence_of :branch, :commit, :file_scm, :type
+  validates_inclusion_of :type, in: %w(A M D V C R)
+
   ## RailsAdmin
   def title
     "#{self.type} #{self.file_scm.title} to #{self.commit.title}"
