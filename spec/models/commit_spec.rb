@@ -35,4 +35,10 @@ describe Commit do
     commit = build(:commit, committer_id: nil)
     expect(commit).to be_valid
   end
+
+  it "returns a correct title" do
+    commit = build(:commit)
+    expected_title = "Rev #{commit.rev}"
+    expect(commit.title).to eq(expected_title)
+  end
 end

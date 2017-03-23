@@ -29,4 +29,10 @@ describe Action do
     let(:object) { build(:action, type: 'Z') }
     it_behaves_like "validating that it is included in the list of values", :type
   end
+
+  it "returns a correct title" do
+    action = build(:action)
+    expected_title = "#{action.type} #{action.file_scm.title} to #{action.commit.title}"
+    expect(action.title).to eq(expected_title)
+  end
 end
