@@ -9,6 +9,8 @@ class FileScm < ActiveRecord::Base
   has_one :type, class_name: "FileType", foreign_key: :file_id
   belongs_to :repository
 
+  validates_presence_of :file_name, :repository
+
   ## RailsAdmin
   def title
     self.file_name
