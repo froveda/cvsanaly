@@ -3,4 +3,6 @@ class TagRevision < ActiveRecord::Base
 
   belongs_to :commit
   belongs_to :tag
+
+  validates_presence_of :commit, :tag
 end
