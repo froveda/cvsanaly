@@ -9,6 +9,8 @@ class Repository < ActiveRecord::Base
   has_many :commits
   has_many :committers, through: :commits, uniq: true
 
+  validates_presence_of :name, :type, :uri
+
   #RailsAdmin
   rails_admin do
     list do

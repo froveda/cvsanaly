@@ -11,6 +11,11 @@ gem 'devise'
 gem 'activerecord-mysql-adapter'
 gem 'twitter-bootswatch-rails', '~> 2.3.1.2'
 gem 'google_visualr', '>= 2.1'
+gem 'twitter-bootswatch-rails-helpers', '>= 2.3.1' # View Helpers Gem can go outside the assets group
+gem 'jquery-rails'
+gem 'cancancan'
+gem 'bootstrap-datepicker-rails'
+gem 'font-awesome-rails'
 
 group :development do
   gem 'taps'
@@ -23,10 +28,12 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-# View Helpers Gem can go outside the assets group
-gem 'twitter-bootswatch-rails-helpers', '>= 2.3.1'
+group :development, :test do
+  gem 'rspec-rails', "~> 3.1.0"
+  gem 'factory_girl_rails', "~> 4.4.1"
+end
 
-gem 'jquery-rails'
-gem 'cancancan'
-gem 'bootstrap-datepicker-rails'
-gem 'font-awesome-rails'
+group :test do
+  gem 'faker', "~> 1.4.3"
+  gem 'shoulda-matchers', '~> 2.6.2'
+end
