@@ -10,7 +10,7 @@ describe User do
     it_behaves_like "validating presence", :email
   end
 
-  describe "without an password" do
+  describe "without a password" do
     let(:object) { build(:user, password: nil) }
     it_behaves_like "validating presence", :password
   end
@@ -18,5 +18,16 @@ describe User do
   describe "with an invalid email format" do
     let(:object) { build(:user, email: 'invalid email') }
     it_behaves_like "validating format", :email
+  end
+
+  describe "with a repeated email" do
+    let!(:user) { create(:user, email: 'email@example.com') }
+    let!(:object) { build(:user, email: 'email@example.com') }
+    it_behaves_like "validating if it is taken", :email
+  end
+
+  describe "with a short password" do
+    let(:object) { build(:user, password: 'pass') }
+    it_behaves_like "validating attribute is too short", :password, 8
   end
 end
