@@ -5,7 +5,7 @@ describe Branch do
     expect(build(:branch)).to be_valid
   end
 
-  describe "without a file_name" do
+  describe "without a name" do
     let(:object) { build(:branch, name: nil) }
     it_behaves_like "validating presence", :name
   end
