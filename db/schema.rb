@@ -130,10 +130,6 @@ ActiveRecord::Schema.define(:version => 20170309220229) do
     t.integer  "files"
   end
 
-  create_table "months", :force => true do |t|
-    t.datetime "date"
-  end
-
   create_table "people", :force => true do |t|
     t.string "name"
     t.string "email"
