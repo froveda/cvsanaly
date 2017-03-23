@@ -1,6 +1,7 @@
 FactoryGirl.define do
-  factory :file_scm do
-    file_name { Faker::Name.name }
-    repository
+  factory :repository do
+    name { Faker::Name.name }
+    uri { Faker::Internet.url }
+    type 'svn'
   end
 end
