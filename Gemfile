@@ -16,6 +16,7 @@ gem 'jquery-rails'
 gem 'cancancan'
 gem 'bootstrap-datepicker-rails'
 gem 'font-awesome-rails'
+gem 'rails_12factor'
 
 group :development do
   gem 'taps'
