@@ -5,6 +5,14 @@ describe FileCopy do
     expect(build(:file_copy)).to be_valid
   end
 
+  describe "validations" do
+    it { is_expected.to validate_presence_of(:action) }
+    it { is_expected.to validate_presence_of(:commit) }
+    it { is_expected.to validate_presence_of(:from) }
+    it { is_expected.to validate_presence_of(:to) }
+    it { is_expected.to validate_presence_of(:new_file_name) }
+  end
+
   describe "without a action" do
     let(:object) { build(:file_copy, action: nil) }
     it_behaves_like "validating presence", :action

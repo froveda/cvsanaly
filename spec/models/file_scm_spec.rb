@@ -5,6 +5,11 @@ describe FileScm do
     expect(build(:file_scm)).to be_valid
   end
 
+  describe "validations" do
+    it { is_expected.to validate_presence_of(:file_name) }
+    it { is_expected.to validate_presence_of(:repository) }
+  end
+
   describe "without a file_name" do
     let(:object) { build(:file_scm, file_name: nil) }
     it_behaves_like "validating presence", :file_name

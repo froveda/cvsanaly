@@ -35,7 +35,7 @@ end
 
 group :test do
   gem 'faker', '~> 1.4.3'
-  gem 'shoulda-matchers', '~> 2.6.2'
+  gem 'shoulda-matchers', '~> 2.8.0'
   gem 'database_cleaner'
 end
 

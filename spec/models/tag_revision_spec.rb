@@ -5,6 +5,11 @@ describe TagRevision do
     expect(build(:tag_revision)).to be_valid
   end
 
+  describe "validations" do
+    it { is_expected.to validate_presence_of(:tag) }
+    it { is_expected.to validate_presence_of(:commit) }
+  end
+
   describe "without a tag" do
     let(:object) { build(:tag_revision, tag: nil) }
     it_behaves_like "validating presence", :tag

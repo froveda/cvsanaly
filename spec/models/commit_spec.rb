@@ -5,6 +5,12 @@ describe Commit do
     expect(build(:commit)).to be_valid
   end
 
+  describe "validations" do
+    it { is_expected.to validate_presence_of(:committer_id) }
+    it { is_expected.to validate_presence_of(:author_id) }
+    it { is_expected.to validate_presence_of(:repository) }
+  end
+
   describe "without a repository" do
     let(:object) { build(:commit, repository: nil) }
     it_behaves_like "validating presence", :repository

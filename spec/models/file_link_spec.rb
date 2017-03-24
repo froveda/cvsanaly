@@ -1,8 +1,14 @@
 require 'rails_helper'
 
-describe Branch do
+describe FileLink do
   it "has a valid factory" do
     expect(build(:file_link)).to be_valid
+  end
+
+  describe "validations" do
+    it { is_expected.to validate_presence_of(:commit) }
+    it { is_expected.to validate_presence_of(:file_scm) }
+    it { is_expected.to validate_presence_of(:file_path) }
   end
 
   describe "without a commit" do

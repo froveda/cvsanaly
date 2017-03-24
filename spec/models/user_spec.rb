@@ -5,6 +5,13 @@ describe User do
     expect(build(:user)).to be_valid
   end
 
+  describe "validations" do
+    it { is_expected.to validate_presence_of(:email) }
+    it { is_expected.to validate_presence_of(:password) }
+    it { is_expected.to validate_uniqueness_of(:email) }
+    it { is_expected.to validate_length_of(:password).is_at_least(8) }
+  end
+
   describe "without an email" do
     let(:object) { build(:user, email: nil) }
     it_behaves_like "validating presence", :email

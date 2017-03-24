@@ -5,6 +5,14 @@ describe CommitsLine do
     expect(build(:commits_line)).to be_valid
   end
 
+  describe "validations" do
+    it { is_expected.to validate_presence_of(:commit) }
+    it { is_expected.to validate_presence_of(:added) }
+    it { is_expected.to validate_presence_of(:removed) }
+    it { is_expected.to validate_numericality_of(:added).only_integer.is_greater_than_or_equal_to(0) }
+    it { is_expected.to validate_numericality_of(:removed).only_integer.is_greater_than_or_equal_to(0) }
+  end
+
   describe "without a commit" do
     let(:object) { build(:commits_line, commit: nil) }
     it_behaves_like "validating presence", :commit

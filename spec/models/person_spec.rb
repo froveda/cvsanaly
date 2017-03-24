@@ -5,6 +5,11 @@ describe Person do
     expect(build(:person)).to be_valid
   end
 
+  describe "validations" do
+    it { is_expected.to validate_presence_of(:email) }
+    it { is_expected.to validate_presence_of(:name) }
+  end
+
   describe "without a name" do
     let(:object) { build(:person, name: nil) }
     it_behaves_like "validating presence", :name

@@ -5,6 +5,12 @@ describe Repository do
     expect(build(:repository)).to be_valid
   end
 
+  describe "validations" do
+    it { is_expected.to validate_presence_of(:name) }
+    it { is_expected.to validate_presence_of(:type) }
+    it { is_expected.to validate_presence_of(:uri) }
+  end
+
   describe "without a name" do
     let(:object) { build(:repository, name: nil) }
     it_behaves_like "validating presence", :name
