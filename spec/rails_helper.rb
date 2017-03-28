@@ -8,6 +8,7 @@ require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
 require 'factory_girl_rails'
 require 'database_cleaner'
+require 'devise'
 
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 
@@ -33,4 +34,7 @@ RSpec.configure do |config|
   config.after(:each) do
     DatabaseCleaner.clean
   end
+
+  config.include Devise::TestHelpers, type: :controller
+  config.extend ControllerMacros, type: :controller
 end
