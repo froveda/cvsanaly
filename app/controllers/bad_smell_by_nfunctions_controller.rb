@@ -7,7 +7,7 @@ class BadSmellByNfunctionsController < ApplicationController
 
   def bad_smell_by_nfunctions_filtered
     limit = params[:filter][:limit]
-    @metrics = Metric.includes(:commit, :file)
+    @metrics = Metric.includes(:file)
                  .where(files: { repository_id: repository }, metrics:{ lang: 'java' })
                  .where(["metrics.nfunctions > ?", limit])
                  .group("metrics.file_id")
