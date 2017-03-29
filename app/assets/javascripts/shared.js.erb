@@ -17,7 +17,9 @@ $(document).ready(function(){
 
   if( $('.date_filters').length > 0 ) {
     $('#filter_repository').on('change', function(){
-      $.post("<%= change_dates_path %>", { filter: { repository: $(this).val() } })
+      var change_date_path = $('#only_year_and_month').length > 0 ? "<%= change_dates_for_metrics_evo_path %>" : "<%= change_dates_path %>";
+
+      $.post(change_date_path, { filter: { repository: $(this).val() } })
           .done(function(data) {
             $('.date_filters').html(data);
           });

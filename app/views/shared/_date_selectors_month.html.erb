@@ -7,4 +7,5 @@
     <%= label_tag "To" %>
     <%= date_select("filter", "to", start_year: from.year, end_year: to.year, default: to, order: [:month, :year]) %>
   </div>
+  <span stype="display:none;" id="only_year_and_month"></span>
 <% end %>
