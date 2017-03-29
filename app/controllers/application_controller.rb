@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  protect_from_forgery
+  protect_from_forgery except: [:change_dates, :change_dates_for_metrics_evo, :change_branches, :change_commiters]
 
   before_filter :authenticate_user!
   before_filter :set_branches, only: [:change_branches]
@@ -68,10 +68,12 @@ class ApplicationController < ActionController::Base
   end
 
   def from
+    return nil unless params[:filter] && params[:filter]['from(1i)'] && params[:filter]['from(2i)'] && params[:filter]['from(3i)']
     Date.parse("#{params[:filter]['from(1i)']}-#{params[:filter]['from(2i)']}-#{params[:filter]['from(3i)']}").beginning_of_day
   end
 
   def to
+    return nil unless params[:filter] && params[:filter]['to(1i)'] && params[:filter]['to(2i)'] && params[:filter]['to(3i)']
     Date.parse("#{params[:filter]['to(1i)']}-#{params[:filter]['to(2i)']}-#{params[:filter]['to(3i)']}").end_of_day
   end
 
