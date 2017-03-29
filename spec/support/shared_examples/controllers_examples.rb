@@ -56,7 +56,7 @@ shared_examples_for 'access to :bad_smell_by_nfunctions_filtered with user logge
 
     it "renders the :bad_smell_by_nfunctions_filtered template" do
       get :bad_smell_by_nfunctions_filtered, filter: { limit: 12, repository: @repository }
-      expect(response).to render_template :bad_smell_by_nfunctions_filtered
+      expect(response).to render_template text: "No results were found."
     end
   end
 
