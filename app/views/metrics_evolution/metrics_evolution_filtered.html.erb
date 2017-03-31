@@ -13,10 +13,11 @@
   </tr>
   </thead>
   <tbody>
+  <% branches_names = @branches.each_with_object({}) { |branch, hash| hash[branch.id] = branch.name } %>
   <% @metrics_evo.each do |metric_evo| %>
     <tr>
       <%= content_tag "td", metric_evo.date.strftime("%m/%d/%Y") %>
-      <%= content_tag "td", metric_evo.branch.name %>
+      <%= content_tag "td", branches_names[metric_evo.branch_id] %>
       <%= content_tag "td", metric_evo.sloc if ['All','SLOC'].include?(@type) %>
       <%= content_tag "td", metric_evo.loc if ['All','LOC'].include?(@type) %>
       <%= content_tag "td", metric_evo.files if ['All','Files'].include?(@type) %>

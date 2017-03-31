@@ -50,15 +50,15 @@ shared_examples_for 'access to :loc_sum_by_date_filtered with user logged in' do
   include_examples 'loc_sloc_sum_in_time data initialization'
 
   describe 'Get #loc_sum_by_date_filtered' do
-    describe 'filtering by' do
 
-      context 'with no parameters' do
-        it 'renders the :loc_sum_by_date_filtered template' do
-          get :loc_sum_by_date_filtered, @params
-          expect(response).to render_template(text: "No results were found.")
-        end
+    context 'with no parameters' do
+      it 'renders the :loc_sum_by_date_filtered template' do
+        get :loc_sum_by_date_filtered
+        expect(response).to render_template(text: "No results were found.")
       end
+    end
 
+    describe 'filtering by' do
       context 'repository_a' do
         before(:each) do
           @params = {

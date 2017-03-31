@@ -3,7 +3,8 @@ class ApplicationController < ActionController::Base
 
   before_filter :authenticate_user!
   before_filter :set_branches, only: [:change_branches]
-  before_filter :set_dates, only: [:change_dates, :change_dates_for_metrics_evo]
+  before_filter :set_dates, only: [:change_dates]
+  before_filter :set_dates_metrics_evo, only: [:change_dates_for_metrics_evo]
   before_filter :set_committers, only: [:change_commiters]
 
   layout 'flatly'
@@ -13,16 +14,15 @@ class ApplicationController < ActionController::Base
   end
 
   def change_dates_for_metrics_evo
-    @from += 1.month
-    render partial: 'shared/date_selectors_month', locals: { from: @from, to: @to}
+    render partial: 'shared/date_selectors_month', locals: { from: @from, to: @to}, layout: false
   end
 
   def change_branches
-    render partial: 'shared/branches_selector', locals: { branches: @branches }
+    render partial: 'shared/branches_selector', locals: { branches: @branches }, layout: false
   end
 
   def change_commiters
-    render partial: 'shared/committers_selector', locals: { committers: @committers }
+    render partial: 'shared/committers_selector', locals: { committers: @committers }, layout: false
   end
 
   private
@@ -35,6 +35,11 @@ class ApplicationController < ActionController::Base
     @to = Commit.where(repository_id: repository).order("date desc").first.date rescue nil
   end
 
+  def set_dates_metrics_evo
+    @from = MetricsEvo.where(branch_id: repository.branches.map(&:id)).order("date asc").first.date.beginning_of_month rescue nil
+    @to = MetricsEvo.where(branch_id: repository.branches.map(&:id)).order("date desc").first.date.end_of_month rescue nil
+  end
+
   def set_committers
     @committers = repository ? repository.committers : Person.all
   end
@@ -44,11 +49,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_branches
-    if branch
-      @branches = [branch]
-    else
-      @branches = repository.branches rescue []
-    end
+    @branches = branch ? [branch] : (repository.branches rescue [])
   end
 
   def set_metrics_types
@@ -67,14 +68,16 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def from
-    return nil unless params[:filter] && params[:filter]['from(1i)'] && params[:filter]['from(2i)'] && params[:filter]['from(3i)']
-    Date.parse("#{params[:filter]['from(1i)']}-#{params[:filter]['from(2i)']}-#{params[:filter]['from(3i)']}").beginning_of_day
+  def from(beginning_of_month = false)
+    return nil unless params[:filter] && params[:filter]['from(1i)'] && params[:filter]['from(2i)']
+    date_string = [params[:filter]['from(1i)'], params[:filter]['from(2i)'], params[:filter]['from(3i)'] ||= '01'].join('-')
+    beginning_of_month ? Date.parse(date_string).beginning_of_month : Date.parse(date_string).beginning_of_day
   end
 
-  def to
-    return nil unless params[:filter] && params[:filter]['to(1i)'] && params[:filter]['to(2i)'] && params[:filter]['to(3i)']
-    Date.parse("#{params[:filter]['to(1i)']}-#{params[:filter]['to(2i)']}-#{params[:filter]['to(3i)']}").end_of_day
+  def to(end_of_month = false)
+    return nil unless params[:filter] && params[:filter]['to(1i)'] && params[:filter]['to(2i)']
+    date_string = [params[:filter]['to(1i)'], params[:filter]['to(2i)'], params[:filter]['to(3i)'] ||= '01'].join('-')
+    end_of_month ? Date.parse(date_string).end_of_month : Date.parse(date_string).end_of_day
   end
 
   def committer
