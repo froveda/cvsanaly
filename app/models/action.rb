@@ -14,7 +14,7 @@ class Action < ActiveRecord::Base
   belongs_to :commit
   belongs_to :file_scm, foreign_key: :file_id
   belongs_to :branch
-  has_many :file_copies
+  has_many :file_copies, dependent: :destroy
 
   validates_presence_of :branch, :commit, :file_scm, :type
   validates_inclusion_of :type, in: %w(A M D V C R)

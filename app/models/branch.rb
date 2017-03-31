@@ -1,8 +1,8 @@
 class Branch < ActiveRecord::Base
   attr_accessible :name
 
-  has_many :actions
-  has_many :metrics_evos
+  has_many :actions, dependent: :destroy
+  has_many :metrics_evos, dependent: :destroy
 
   validates_presence_of :name
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20170309220229) do
+ActiveRecord::Schema.define(:version => 20170331023654) do
 
   create_table "action_files", :force => true do |t|
     t.integer  "file_id"
@@ -43,6 +43,11 @@ ActiveRecord::Schema.define(:version => 20170309220229) do
 
   create_table "branches", :force => true do |t|
     t.string "name"
+  end
+
+  create_table "commit_graph", :force => true do |t|
+    t.integer "commit_id"
+    t.integer "parent_id"
   end
 
   create_table "commits_lines", :force => true do |t|
@@ -130,6 +135,10 @@ ActiveRecord::Schema.define(:version => 20170309220229) do
     t.integer  "files"
   end
 
+  create_table "months", :force => true do |t|
+    t.datetime "date"
+  end
+
   create_table "people", :force => true do |t|
     t.string "name"
     t.string "email"
@@ -155,13 +164,16 @@ ActiveRecord::Schema.define(:version => 20170309220229) do
   end
 
   create_table "scmlog", :force => true do |t|
-    t.text     "rev",           :limit => 16777215
+    t.text     "rev",            :limit => 16777215
     t.integer  "committer_id"
     t.integer  "author_id"
     t.datetime "date"
-    t.text     "message",       :limit => 2147483647
+    t.text     "message",        :limit => 2147483647
     t.boolean  "composed_rev"
     t.integer  "repository_id"
+    t.integer  "date_tz"
+    t.integer  "author_date_tz"
+    t.datetime "author_date"
   end
 
   add_index "scmlog", ["author_id"], :name => "author_id"

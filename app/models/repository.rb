@@ -2,11 +2,11 @@ class Repository < ActiveRecord::Base
   self.inheritance_column = nil
   attr_accessible :name, :type, :uri
 
-  has_many :files, class_name: "FileScm"
+  has_many :files, class_name: "FileScm", dependent: :destroy
   has_many :actions, through: :files
-  has_many :branches, through: :actions, uniq: true
+  has_many :branches, through: :actions, uniq: true, dependent: :destroy
 
-  has_many :commits
+  has_many :commits, dependent: :destroy
   has_many :committers, through: :commits, uniq: true
 
   validates_presence_of :name, :type, :uri

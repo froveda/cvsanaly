@@ -3,10 +3,12 @@ class Commit < ActiveRecord::Base
 
   attr_accessible :author_id, :committer_id, :composed_rev, :date, :message, :repository_id, :rev
 
-  has_many :actions, class_name: "Action", foreign_key: :commit_id
-  has_many :file_copies, foreign_key: :from_commit_id
-  has_many :tag_revisions, foreign_key: :commit_id
-  has_many :metrics
+  has_many :actions, class_name: "Action", foreign_key: :commit_id, dependent: :destroy
+  has_many :file_copies, foreign_key: :from_commit_id, dependent: :destroy
+  has_many :tag_revisions, foreign_key: :commit_id, dependent: :destroy
+  has_many :metrics, dependent: :destroy
+  has_many :commits_lines, dependent: :destroy
+  has_many :file_links, dependent: :destroy
 
   belongs_to :author, class_name: "Person"
   belongs_to :committer, class_name: "Person"
