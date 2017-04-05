@@ -23,5 +23,5 @@ describe ModificationsAmountByCommitController do
 
     it_behaves_like 'access to :modifications_amount_by_commit_filtered with user logged in'
   end
-  
+
 end
