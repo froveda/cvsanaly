@@ -1,13 +1,16 @@
 class ModificationsAmountByCommitController < ApplicationController
-  before_filter :set_repositories, only: [:modifications_amount_by_commit]
-  before_filter :set_dates, only: [:modifications_amount_by_commit]
-  before_filter :set_modifications, only: [:modifications_amount_by_commit]
+  before_filter :set_repositories, :set_dates, :set_modifications, only: [:modifications_amount_by_commit]
 
   ## SUM of files modified in time
   def modifications_amount_by_commit
   end
 
   def modifications_amount_by_commit_filtered
+    if from.nil? || to.nil? || repository.nil?
+      render text: "No results were found."
+      return
+    end
+
     @commits = Commit.joins(:actions)
                  .select('DATE(scmlog.date) as date,
                           CONVERT( SUM(CASE WHEN actions.type = "A" THEN 1 ELSE 0 END), UNSIGNED INTEGER ) as sum_a,
