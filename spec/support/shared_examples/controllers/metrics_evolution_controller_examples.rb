@@ -57,14 +57,14 @@ end
 shared_examples_for 'access to :metrics_evolution_filtered with user logged in' do
   include_examples 'metrics_evolution data initialization'
 
-  context 'with no parameters' do
-    it 'renders the :metrics_evolution_filtered template' do
-      get :metrics_evolution_filtered
-      expect(response).to render_template(text: "No results were found.")
-    end
-  end
-
   describe 'Get #metrics_evolution_filtered' do
+    context 'with no parameters' do
+      it 'renders the :metrics_evolution_filtered template' do
+        get :metrics_evolution_filtered
+        expect(response).to render_template(text: "No results were found.")
+      end
+    end
+
     describe 'filtering by' do
       context 'repository_a' do
         before(:each) do

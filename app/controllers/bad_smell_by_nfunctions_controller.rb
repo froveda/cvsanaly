@@ -6,7 +6,13 @@ class BadSmellByNfunctionsController < ApplicationController
   end
 
   def bad_smell_by_nfunctions_filtered
-    limit = params[:filter][:limit]
+    limit = params[:filter][:limit] rescue nil
+
+    if limit.nil? || repository.nil?
+      render text: "No results were found."
+      return
+    end
+
     @metrics = Metric.includes(:file)
                  .where(files: { repository_id: repository }, metrics:{ lang: 'java' })
                  .where(["metrics.nfunctions > ?", limit])
